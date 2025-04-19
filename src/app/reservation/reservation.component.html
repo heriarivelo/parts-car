@@ -1,0 +1,178 @@
+    <!-- Hero Section -->
+    <section class="bg-primary text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Réservation avec chauffeur</h1>
+            <p class="text-xl max-w-2xl mx-auto">Profitez d'un service premium avec nos chauffeurs professionnels.</p>
+        </div>
+    </section>
+
+    <!-- Reservation Form -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Détails de réservation</h2>
+                        
+                        <form>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Type de véhicule avec chauffeur</label>
+                                <select class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <option>Sélectionnez un véhicule</option>
+                                    <option>Berline Premium (Audi A6) - €129/jour</option>
+                                    <option>SUV Luxe (Range Rover) - €179/jour</option>
+                                    <option>Voiture de Luxe (Mercedes Classe S) - €199/jour</option>
+                                    <option>Minivan (VW Multivan) - €159/jour</option>
+                                    <option>Voiture Executive (BMW Série 7) - €219/jour</option>
+                                </select>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Date et heure de prise</label>
+                                    <input type="datetime-local" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Date et heure de retour</label>
+                                    <input type="datetime-local" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Lieu de prise en charge</label>
+                                <input type="text" placeholder="Adresse complète" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Destination principale</label>
+                                <input type="text" placeholder="Adresse complète" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Informations supplémentaires</label>
+                                <textarea class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" rows="3" placeholder="Détails sur le trajet, besoins spécifiques..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-white py-3 rounded-md font-medium hover:bg-secondary transition transform hover:scale-105">
+                                Confirmer la réservation
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="md:w-1/2 bg-gray-50 p-8">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Votre service comprend</h2>
+                        
+                        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>Chauffeur professionnel diplômé</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>Service porte-à-porte</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>Assurance complète incluse</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>Kilométrage illimité</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>Eau minérale et journaux à bord</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>Assistance 24h/24</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <h3 class="font-bold text-lg mb-4">Détails de prix</h3>
+                            
+                            <div class="space-y-3 mb-4">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Location avec chauffeur (3 jours)</span>
+                                    <span class="font-medium">€387</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Frais de service chauffeur</span>
+                                    <span class="font-medium">€150</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Frais de péage et parking</span>
+                                    <span class="font-medium">Estimés à €50</span>
+                                </div>
+                            </div>
+                            
+                            <div class="border-t border-gray-200 pt-4">
+                                <div class="flex justify-between font-bold text-lg">
+                                    <span>Total estimé</span>
+                                    <span class="text-primary">€587</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">Les frais réels de péage et parking seront calculés après le trajet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chauffeur Info -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Nos chauffeurs professionnels</h2>
+                <p class="text-gray-600 mb-8">Tous nos chauffeurs sont rigoureusement sélectionnés et formés pour vous offrir un service exceptionnel.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="bg-primary text-white p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Formation rigoureuse</h3>
+                        <p class="text-gray-600">Nos chauffeurs suivent une formation approfondie sur la sécurité routière, le service client et la connaissance géographique.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="bg-primary text-white p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Expérience vérifiée</h3>
+                        <p class="text-gray-600">Minimum 5 ans d'expérience de conduite professionnelle et casier judiciaire vierge.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="bg-primary text-white p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Ponctualité</h3>
+                        <p class="text-gray-600">Nos chauffeurs sont toujours à l'heure avec un taux de ponctualité de 99,7%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

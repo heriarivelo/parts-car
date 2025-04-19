@@ -1,0 +1,15 @@
+<nav class="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-4 flex justify-between items-center">
+  <div class="flex flex-nowrap items-center gap-2">
+  <img class="h-8 md:h-10 lg:h-12" src="logo/android-chrome-192x192.png" alt=""/>  
+  <a routerLink="/" class="text-xl font-bold text-gray-800"><span class="text-primary">Kaleo</span>car</a>
+</div>
+    <div class="space-x-6">
+      <a routerLink="/" routerLinkActive="text-primary font-bold" [routerLinkActiveOptions]="{ exact: true }" class="text-[15px] font-semibold text-gray-800 hover:text-primary transition">Accueil</a>
+      <a routerLink="/nos-vehicules" routerLinkActive="text-primary font-bold" class="text-[15px] font-semibold text-gray-800 hover:text-primary transition">Nos véhicules</a>
+      <a routerLink="/services" routerLinkActive="text-primary font-bold" class="text-[15px] font-semibold text-gray-800 hover:text-primary transition">Services</a>
+      <a routerLink="/contact" routerLinkActive="text-primary font-bold" class="text-[15px] font-semibold text-gray-800 hover:text-primary transition">Contact</a>
+      <a routerLink="/reservation" class="bg-red-600 text-white px-6 py-2.5 rounded-md font-semibold hover:bg-red-700 transition duration-300">
+        Réserver
+      </a>
+    </div>
+  </nav>

@@ -1,0 +1,233 @@
+    
+       <!-- Hero Section -->
+       <header class="bg-primary text-white py-16">
+        <div class="my-container text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Notre flotte de véhicules</h1>
+            <p class="text-xl max-w-2xl mx-auto">Découvrez notre sélection de voitures récentes et bien entretenues pour répondre à tous vos besoins de déplacement.</p>
+        </div>
+    </header>
+    <!-- Filter Section -->
+    <section class="bg-white shadow-sm py-8">
+        <div class="my-container">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="w-full md:w-auto mb-4 md:mb-0">
+                    <h2 class="text-xl font-semibold text-gray-800">Filtrer les véhicules</h2>
+                </div>
+                <div class="w-full md:w-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <select class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option>Catégorie</option>
+                        <option>Économique</option>
+                        <option>Compacte</option>
+                        <option>Intermédiaire</option>
+                        <option>SUV</option>
+                        <option>Luxe</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option>Marque</option>
+                        <option>Toyota</option>
+                        <option>Volkswagen</option>
+                        <option>BMW</option>
+                        <option>Mercedes</option>
+                        <option>Audi</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option>Prix</option>
+                        <option>Moins de 50€/j</option>
+                        <option>50-100€/j</option>
+                        <option>100-150€/j</option>
+                        <option>Plus de 150€/j</option>
+                    </select>
+                    <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/50 transition">Appliquer</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Grid -->
+    <section class="py-12">
+        <div class="my-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Vehicle Card 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Toyota Corolla" class="w-full h-48 object-cover">
+                        <span class="absolute top-4 right-4 bg-secondary text-white text-xs font-semibold px-2 py-1 rounded-full">Populaire</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Toyota Corolla</h3>
+                                <p class="text-gray-600">Compacte • 2022</p>
+                            </div>
+                            <span class="text-primary font-bold">75€<span class="text-sm font-normal text-gray-500">/jour</span></span>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">5 places</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Automatique</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Clim</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">5.2L/100km</span>
+                        </div>
+                        <div class="mt-6 flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium hover:underline">Voir détails</a>
+                            <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/50 transition">Réserver</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="BMW Série 3" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">BMW Série 3</h3>
+                                <p class="text-gray-600">Berline • 2021</p>
+                            </div>
+                            <span class="text-primary font-bold">120€<span class="text-sm font-normal text-gray-500">/jour</span></span>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">5 places</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Automatique</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Clim</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">GPS</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">6.8L/100km</span>
+                        </div>
+                        <div class="mt-6 flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium hover:underline">Voir détails</a>
+                            <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/50 transition">Réserver</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Volkswagen Golf" class="w-full h-48 object-cover">
+                        <span class="absolute top-4 right-4 bg-secondary text-white text-xs font-semibold px-2 py-1 rounded-full">Économique</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Volkswagen Golf</h3>
+                                <p class="text-gray-600">Compacte • 2023</p>
+                            </div>
+                            <span class="text-primary font-bold">65€<span class="text-sm font-normal text-gray-500">/jour</span></span>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">5 places</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Manuelle</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Clim</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">4.9L/100km</span>
+                        </div>
+                        <div class="mt-6 flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium hover:underline">Voir détails</a>
+                            <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/50 transition">Réserver</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Audi Q5" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Audi Q5</h3>
+                                <p class="text-gray-600">SUV • 2022</p>
+                            </div>
+                            <span class="text-primary font-bold">140€<span class="text-sm font-normal text-gray-500">/jour</span></span>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">5 places</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Automatique</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Clim</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">GPS</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">7.5L/100km</span>
+                        </div>
+                        <div class="mt-6 flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium hover:underline">Voir détails</a>
+                            <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/50 transition">Réserver</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 5 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Mercedes Classe A" class="w-full h-48 object-cover">
+                        <span class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-semibold px-2 py-1 rounded-full">Nouveau</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Mercedes Classe A</h3>
+                                <p class="text-gray-600">Compacte • 2023</p>
+                            </div>
+                            <span class="text-primary font-bold">110€<span class="text-sm font-normal text-gray-500">/jour</span></span>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">5 places</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Automatique</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Clim</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">GPS</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">5.8L/100km</span>
+                        </div>
+                        <div class="mt-6 flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium hover:underline">Voir détails</a>
+                            <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/50 transition">Réserver</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Card 6 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Toyota RAV4" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Toyota RAV4</h3>
+                                <p class="text-gray-600">SUV • 2021</p>
+                            </div>
+                            <span class="text-primary font-bold">95€<span class="text-sm font-normal text-gray-500">/jour</span></span>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">5 places</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Automatique</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Clim</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">6.2L/100km</span>
+                        </div>
+                        <div class="mt-6 flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium hover:underline">Voir détails</a>
+                            <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/50 transition">Réserver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center">
+                <nav class="flex items-center space-x-2">
+                    <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">Précédent</button>
+                    <button class="px-3 py-1 rounded-md bg-primary text-white">1</button>
+                    <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
+                    <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
+                    <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">Suivant</button>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-primary text-white py-16">
+        <div class="my-container text-center">
+            <h2 class="text-3xl font-bold mb-4">Vous ne trouvez pas ce que vous cherchez ?</h2>
+            <p class="text-xl max-w-2xl mx-auto mb-8">Contactez-nous et nous trouverons la voiture parfaite pour vos besoins.</p>
+            <button class="bg-white text-primary px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition">Nous contacter</button>
+        </div>
+    </section>

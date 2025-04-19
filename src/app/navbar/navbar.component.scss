@@ -1,0 +1,8 @@
+/* Exemple de style personnalisé */
+nav {
+    transition: background-color 0.3s ease;
+  }
+  
+  nav.scrolled {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
