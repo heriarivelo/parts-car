@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-commande-admin',
+  selector: 'app-commande-manager',
   imports: [
     CommonModule,
     FormsModule
@@ -11,14 +12,36 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './commande.component.html',
   styleUrl: './commande.component.scss'
 })
-export class CommandeComponent {
+export class CommandeMComponent {
     showModal: boolean = false;
-    openModal() {
-        this.showModal = true;
+  constructor(private router: Router) {}
+
+    page(){
+      this.router.navigate(['/manager/commande/new']);
+    }
+    commandes: any[] = [
+      {
+        contact: '032 84 222 00 / exemple@gmail.com',
+        reference: 'REF-001',
+        description: 'Filtre à huile BOSCH',
+        prix: 120000,
+        quantite: 1,
+        status: 'Disponible'
       }
-    
-      // Fonction pour fermer la modal
-      closeModal() {
-        this.showModal = false;
-      }
+    ];
+  
+    ajouterCommande() {
+      this.commandes.push({
+        contact: '032 11 222 00 / nouveau@gmail.com',
+        reference: 'REF-NEW',
+        description: 'Nouvelle pièce',
+        prix: 90000,
+        quantite: 1,
+        status: 'Disponible'
+      });
+    }
+  
+    supprimerCommande(index: number) {
+      this.commandes.splice(index, 1);
+    }
 }

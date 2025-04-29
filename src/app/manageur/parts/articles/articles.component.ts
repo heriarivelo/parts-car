@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-articles',
+  selector: 'app-articles-manager',
   imports: [
     CommonModule,
   ],
   templateUrl: './articles.component.html',
   styleUrl: './articles.component.scss'
 })
-export class ArcticlesComponent {
+export class ArcticlesMComponent {
     article = {
         imageUrl: '', 
         nom: 'Plaquettes de frein BOSCH',

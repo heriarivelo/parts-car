@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NewMComponent } from './new.component';
 
-import { DashboardsMComponent } from './dashboards.component';
-
-describe('DashboardsMComponent', () => {
-  let component: DashboardsMComponent;
-  let fixture: ComponentFixture<DashboardsMComponent>;
+describe('NewComponent', () => {
+  let component: NewMComponent;
+  let fixture: ComponentFixture<NewMComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardsMComponent]
+      imports: [NewMComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DashboardsMComponent);
+    fixture = TestBed.createComponent(NewMComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -16,11 +16,12 @@ import { NavbarComponent } from './navbar/navbar.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title(title: any) {
+  title(_title: any) {
     throw new Error('Method not implemented.');
   }
   role: string[] = ['admin', 'manager'];
 currentRole: string = 'admin'; // Par défaut admin
+showLayout: boolean = true;
 
 constructor(private router: Router) {
   this.router.events
@@ -31,6 +32,13 @@ constructor(private router: Router) {
       const matchedRole = this.role.find(r => url.includes(`/${r}`));
       this.currentRole = matchedRole ? matchedRole : 'admin'; // Reste sur admin si rien trouvé
     });
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Cacher le layout complet uniquement pour la page de login
+        this.showLayout = event.url !== '/login';
+      }
+    });
 }
+
   
 }

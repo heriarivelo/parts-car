@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArcticlesComponent } from './articles.component';
+import { ArcticlesMComponent } from './articles.component';
 
-describe('ArcticlesComponent', () => {
-  let component: ArcticlesComponent;
-  let fixture: ComponentFixture<ArcticlesComponent>;
+describe('ArcticlesMComponent', () => {
+  let component: ArcticlesMComponent;
+  let fixture: ComponentFixture<ArcticlesMComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArcticlesComponent]
+      imports: [ArcticlesMComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ArcticlesComponent);
+    fixture = TestBed.createComponent(ArcticlesMComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -19,6 +19,11 @@ import { ImportationComponent } from './app/admin/parts/importation/importation.
 import { CommandeComponent } from './app/admin/parts/Commande/commande.component';
 import { ArcticlesComponent } from './app/admin/parts/articles/articles.component';
 import { EntrepotComponent } from './app/admin/parts/entrepot/entrepot.component';
+import { ArcticlesMComponent } from './app/manageur/parts/articles/articles.component';
+import { CommandeMComponent } from './app/manageur/parts/Commande/commande.component';
+import { LoginComponent } from './app/Login/login.component';
+import { DashboardsMComponent } from './app/manageur/parts/dashboards/dashboards.component';
+import { NewMComponent } from './app/manageur/parts/Commande/new/new.component';
 // import { AboutComponent } from './app/about.component';
 
 const routes: Routes = [
@@ -27,6 +32,8 @@ const routes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'reservation', component: ReservationComponent },
   { path: 'nos-vehicules', component: VehiculesComponent },
+  { path: 'login', component: LoginComponent },
+  
 
   { path: 'admin-stocks', component: StocksComponent },
   { path: 'admin-tableau-de-bord', component: DashboardsComponent },
@@ -34,7 +41,23 @@ const routes: Routes = [
   { path: 'import-data' , component: ImportationComponent },
   { path: 'article' , component: ArcticlesComponent },
   { path: 'admin-commande' , component: CommandeComponent },
-  { path: 'entrepot' , component: EntrepotComponent }
+  { path: 'entrepot' , component: EntrepotComponent },
+
+  {
+      path: 'manager',
+      children: [
+        { path: 'article', component: ArcticlesMComponent },      
+        { path: 'tableau-de-bord' , component: DashboardsMComponent },
+        { path:'commande' , 
+          children: [
+            {path: '' , component: CommandeMComponent},
+            {path: 'new' , component: NewMComponent }
+            
+          ],
+        },
+  
+      ]
+    }
   
 
   // Ajoutez d'autres routes ici

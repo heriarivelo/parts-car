@@ -1,4 +1,5 @@
-<div class="min-h-screen flex flex-col bg-gray-50">
+<!-- Si on n’est PAS sur la page de login, afficher tout le layout -->
+<div *ngIf="showLayout" class="min-h-screen flex flex-col bg-gray-50">
   <!-- Navbar sticky -->
   <header class="sticky top-0 z-50 bg-white shadow-md">
     <app-navbar></app-navbar>
@@ -6,16 +7,13 @@
 
   <div class="flex flex-1 overflow-hidden">
     <!-- Sidebar -->
-    <ng-container *ngIf="currentRole === 'admin'; else managerNav">
-      <app-admin-sidebar></app-admin-sidebar>
+    <ng-container> 
+      <app-admin-sidebar *ngIf="currentRole === 'admin'"></app-admin-sidebar>
+      <app-manager-sidebar *ngIf="currentRole === 'manager'"></app-manager-sidebar>
     </ng-container>
-    <ng-template #managerNav>
-      <app-manager-sidebar></app-manager-sidebar>
-    </ng-template>
 
-    <!-- Contenu principal scrollable -->
+    <!-- Contenu principal -->
     <div class="flex-1 overflow-y-auto p-6" style="max-height: calc(100vh - 64px - 64px);">
-      <!-- 100vh - hauteur navbar - hauteur footer -->
       <router-outlet></router-outlet>
     </div>
   </div>
@@ -25,12 +23,15 @@
     <app-footer></app-footer>
   </footer>
 
-  <!-- Floating WhatsApp button -->
+  <!-- WhatsApp floating button -->
   <div class="fixed bottom-6 right-6 z-50 animate-float">
     <a href="#" class="bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center hover:bg-green-600 transition">
-      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-        <!-- Ton SVG -->
-      </svg>
+      <!-- Ton SVG -->
     </a>
   </div>
+</div>
+
+<!-- Si on est sur la page de login, afficher seulement la page -->
+<div *ngIf="!showLayout">
+  <router-outlet></router-outlet>
 </div>

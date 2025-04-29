@@ -1,8 +1,4 @@
 import { Component, } from '@angular/core';
-
-import { read, utils } from 'xlsx';
-import { Article } from '../../../models/articles.model';
-import { ArticleService } from '../../../services/articles.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

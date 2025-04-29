@@ -34,7 +34,7 @@ export class EntrepotComponent {
     }
   }
 
-  drag(event: DragEvent, item: any) {
+  drag(_event: DragEvent, item: any) {
     this.draggedItem = item;
   }
 
