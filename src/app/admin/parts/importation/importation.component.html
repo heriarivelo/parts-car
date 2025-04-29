@@ -1,0 +1,180 @@
+<section class="bg-primary text-white py-16">
+  <div class="container mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Réservation avec chauffeur</h1>
+      <p class="text-xl max-w-2xl mx-auto">Profitez d'un service premium avec nos chauffeurs professionnels.</p>
+  </div>
+</section>
+
+<!-- Reservation Form -->
+<section class="py-16">
+  <div class="container mx-auto px-6">
+   <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-primary">
+            <i class="fas fa-car-side mr-2"></i>Gestion des Importations
+        </h1>
+        <div class="flex space-x-4">
+            <button id="btn-import" (click)="openImportModal()"  class="bg-accent text-white px-4 py-2 rounded hover:bg-yellow-600">
+                <i class="fas fa-file-import mr-2"></i>Importer Excel
+            </button>
+            <input type="file" id="file-input" class="hidden" accept=".xlsx, .xls">
+        </div>
+    </div>
+    <!-- Navigation -->
+    <div class="flex mb-6 border-b">
+        <button id="tab-import" (click)="setupTabs()" class="px-4 py-2 font-medium border-b-2 border-primary text-primary">
+            Importations
+        </button>
+        <button id="tab-boutique" (click)="setupTabs()" class="px-4 py-2 font-medium text-gray-600 hover:text-primary">
+            Vue Boutique
+        </button>
+    </div>
+    <!-- Section Importations (Admin) -->
+    <div id="section-import" class="bg-white rounded-lg shadow overflow-hidden">
+        <!-- En-tête Importations -->
+        <div class="p-4 border-b flex justify-between items-center bg-secondary text-white">
+            <h2 class="text-lg font-semibold">
+                <i class="fas fa-ship mr-2"></i>Gestion des Expéditions
+            </h2>
+            <button id="btn-new-shipment" class="bg-primary hover:bg-red-800 px-3 py-1 rounded text-sm">
+                <i class="fas fa-plus mr-1"></i>Nouvelle Expédition
+            </button>
+        </div>
+
+        <!-- Liste des Expéditions -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Fournisseur</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Fret Total (€)</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Poids Total (kg)</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Statut</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="shipments-list" class="bg-white divide-y divide-gray-200">
+                    <!-- Les expéditions seront ajoutées ici dynamiquement -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Section Boutique (Gérant) -->
+    <div id="section-boutique" class="bg-white rounded-lg shadow overflow-hidden hidden mt-6">
+        <!-- En-tête Boutique -->
+        <div class="p-4 border-b bg-primary text-white">
+            <h2 class="text-lg font-semibold">
+                <i class="fas fa-store mr-2"></i>Vue Boutique
+            </h2>
+        </div>
+
+        <div class="p-4 border-b grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Marque pièce</label>
+                <select class="w-full border rounded px-3 py-2">
+                    <option>Toutes</option>
+                    <option>BOSCH</option>
+                    <option>KYB</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Marque véhicule</label>
+                <select class="w-full border rounded px-3 py-2">
+                    <option>Toutes</option>
+                    <option>Toyota</option>
+                    <option>Nissan</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Statut</label>
+                <select class="w-full border rounded px-3 py-2">
+                    <option>Disponible</option>
+                    <option>En rupture</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Recherche</label>
+                <div class="relative">
+                    <input type="text" placeholder="Référence, OEM..." class="w-full pl-10 pr-4 py-2 border rounded">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Liste des Pièces -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Référence</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Marque</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">OEM</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Véhicules</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stock</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Prix (MGA)</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="boutique-list" class="bg-white divide-y divide-gray-200">
+                    <!-- Les pièces disponibles seront ajoutées ici -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div *ngIf="showImportModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl">
+        <div class="p-4 border-b flex justify-between items-center bg-secondary text-white">
+          <h3 class="text-lg font-semibold">Importer des Expéditions</h3>
+          <button (click)="closeImportModal()" class="text-white hover:text-gray-200">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="p-6">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Fichier Excel</label>
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+              <input type="file" (change)="handleFileInput($event)" class="hidden" accept=".xlsx, .xls" #fileInput>
+              <button (click)="fileInput.click()" class="bg-accent text-white px-4 py-2 rounded hover:bg-yellow-600 mb-2">
+                <i class="fas fa-file-excel mr-2"></i>Choisir un fichier
+              </button>
+              <p class="text-sm text-gray-500">{{ selectedFileName || 'Aucun fichier sélectionné' }}</p>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Options d'importation</label>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" class="rounded border-gray-300 text-primary" [(ngModel)]="updateExisting">
+                  <span class="ml-2">Mettre à jour les pièces existantes</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" class="rounded border-gray-300 text-primary" [(ngModel)]="addNewPieces">
+                  <span class="ml-2">Ajouter les nouvelles pièces</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-end space-x-3 pt-4">
+            <button (click)="closeImportModal()" class="px-4 py-2 border rounded text-gray-700 hover:bg-gray-100">
+              Annuler
+            </button>
+            <button (click)="importFile()" class="bg-primary text-white px-4 py-2 rounded hover:bg-red-800">
+              <i class="fas fa-upload mr-2"></i>Importer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

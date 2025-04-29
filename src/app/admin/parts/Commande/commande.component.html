@@ -1,0 +1,160 @@
+  <!-- Hero Section -->
+  <section class="bg-primary text-white py-16">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Liste des commande</h1>
+        <p class="text-xl max-w-2xl mx-auto">Tous les commandes faites .</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-16">
+    <div class="container mx-auto px-6">
+        <div class="bg-white rounded-lg shadow overflow-hidden   mt-6">
+            <div class=" p-4 border-b bg-white text-white">
+                <div class="p-4 border-b flex justify-between items-center bg-primary text-white">
+                    <h2 class="text-lg font-semibold">
+                        <i class="fas fa-store mr-2"></i>Commande
+                    </h2>
+                    <button id="btn-new-shipment" (click)="openModal()" class="bg-green-500 hover:bg-red-800 px-3 py-1 rounded text-sm">
+                        <i class="fas fa-plus mr-1"></i>Nouvelle Expédition
+                    </button>
+                </div>
+                <div class="p-4 border-b grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Marque pièce</label>
+                        <select class="w-full border rounded px-3 py-2">
+                            <option>Toutes</option>
+                            <option>BOSCH</option>
+                            <option>KYB</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Marque véhicule</label>
+                        <select class="w-full border rounded px-3 py-2">
+                            <option>Toutes</option>
+                            <option>Toyota</option>
+                            <option>Nissan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Statut</label>
+                        <select class="w-full border rounded px-3 py-2">
+                            <option>Disponible</option>
+                            <option>En rupture</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Recherche</label>
+                        <div class="relative">
+                            <input type="text" placeholder="Référence, OEM..." class="w-full pl-10 pr-4 py-2 border rounded">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Liste des Pièces -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">id</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact client</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">reference</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">description</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">prix</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900">1</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">032 84 222 00 / examplegmail.com</td>
+                            <td class="px-6 py-4 text-sm text-gray-500"> reference</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">description</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">prix</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">status</td>
+                            <td class="px-6 py-4 text-sm font-medium">
+                                <button  class="text-blue-600 hover:text-blue-900">Payer</button>
+                                <button  class="text-red-600 hover:text-red-900 ml-2">Detaille</button>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-end z-50 overflow-hidden">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl p-0 flex flex-col max-h-screen">
+      
+      <!-- Header avec bouton de fermeture -->
+      <div class="p-4 border-b flex justify-between items-center bg-red-600 text-white">
+        <h3 class="text-lg font-semibold text-left">Création d'une nouvelle commande</h3> <!-- titre aligné à gauche -->
+        <button (click)="closeModal()" class="text-white hover:text-gray-200 text-3xl">
+            <i class="fas fa-xmark"></i> <!-- icône de fermeture agrandie -->
+          </button>
+      </div>
+    
+      <!-- Content scrollable -->
+      <div class="overflow-y-auto p-6 flex-1">
+        <form class="bg-white rounded-lg">
+          
+          <div class="mb-4">
+            <label for="reference" class="block text-gray-700 mb-2">Référence Commande</label>
+            <input type="text" id="reference" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
+          </div>
+    
+          <div class="mb-4">
+            <label for="description" class="block text-gray-700 mb-2">Description</label>
+            <input type="text" id="description" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
+          </div>
+    
+          <!-- Section Ajouter Articles -->
+          <div class="bg-gray-100 rounded-lg shadow-md p-6">
+            <div class="p-4 border-b bg-red-600 text-white mb-4">
+              <h2 class="text-lg font-semibold">
+                <i class="fas fa-store mr-2"></i> Ajouter articles
+              </h2>
+            </div>
+    
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Marque pièce</label>
+              <textarea id="message" rows="5" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"></textarea>
+            </div>
+    
+            <div class="mb-4">
+              <label for="quantite" class="block text-gray-700 mb-2">Quantité Commande</label>
+              <input type="number" id="quantite" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
+            </div>
+    
+            <div class="mb-4">
+              <label for="prix_ttl" class="block text-gray-700 mb-2">Prix total</label>
+              <input type="number" id="prix_ttl" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
+            </div>
+          </div>
+    
+          <div class="liste mt-4"></div>
+    
+        </form>
+      </div>
+    
+      <!-- Footer buttons -->
+      <div class="p-4 border-t flex justify-end space-x-3 bg-white">
+        <button (click)="closeModal()" class="px-4 py-2 border rounded text-gray-700 hover:bg-gray-100">
+          Annuler
+        </button>
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+          <i class="fas fa-upload mr-2"></i>Valider
+        </button>
+      </div>
+    
+    </div>
+  </div>
+  
+  
+  
+  

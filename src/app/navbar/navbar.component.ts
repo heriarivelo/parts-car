@@ -9,4 +9,9 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  onLogout() {
+   
+    console.log('Déconnexion...');
+  }
+}
