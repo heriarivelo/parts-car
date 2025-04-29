@@ -45,26 +45,36 @@ const routes: Routes = [
   { path: 'admin-commande' , component: CommandeComponent },
   { path: 'entrepot' , component: EntrepotComponent },
 
-  {
-      path: 'manager',
-      children: [
-        { path: 'article', component: ArcticlesMComponent },      
-        { path: 'tableau-de-bord' , component: DashboardsMComponent },
-        { path:'commande' , 
-          children: [
-            {path: '' , component: CommandeMComponent},
-            {path: 'new' , component: NewMComponent },
-            {path: 'facture' , component: FactureMComponent},
-            {path: 'facture/D' , component: FactureMDComponent},
-            
-          ],
-        },
-  
-      ]
-    }
-  
+  // {
+  //   path: 'manager',
+  //   children: [
+  //     { path: 'article', component: ArcticlesMComponent },
+  //     { path: 'tableau-de-bord', component: DashboardsMComponent },
+  //     {
+  //       path: 'commande',
+  //       children: [
+  //         { path: '', component: CommandeMComponent },
+  //         { path: 'new', component: NewMComponent },
+  //         { path: 'facture', component: FactureMComponent },
+  //         { path: 'facture/D', component: FactureMDComponent },
+  //       ]
+  //     },
+  //     // (optionnel) redirection si /manager sans chemin
+  //     { path: '', redirectTo: 'tableau-de-bord', pathMatch: 'full' },
+  //   ]
+  // },
+  // // redirection par défaut si aucun chemin
+  // { path: '', redirectTo: '/manager', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/manager' }
 
   // Ajoutez d'autres routes ici
+  { path: 'manager/article', component: ArcticlesMComponent },
+  { path: 'manager/tableau-de-bord', component: DashboardsMComponent },
+  { path: 'manager/commande', component: CommandeMComponent },
+  { path: 'manager/commande/new', component: NewMComponent },
+  { path: 'manager/facture', component: FactureMComponent },
+  { path: 'manager/facture/D', component: FactureMDComponent },
+      
 ];
 
 bootstrapApplication(AppComponent, {
