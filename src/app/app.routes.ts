@@ -16,6 +16,8 @@ import { Routes } from '@angular/router';
 import { DashboardsMComponent } from './manageur/parts/dashboards/dashboards.component';
 import { LoginComponent } from './Login/login.component';
 import { NewMComponent } from './manageur/parts/Commande/new/new.component';
+import { FactureMComponent } from './manageur/parts/Facture/facture.component';
+import { FactureMDComponent } from './manageur/parts/Facture/Detaille/factureD.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,7 +43,9 @@ export const routes: Routes = [
       { path:'commande' , 
         children: [
           {path: '' , component: CommandeMComponent},
-          {path: 'new' , component: NewMComponent }
+          {path: 'new' , component: NewMComponent },
+          {path: 'facture' , component: FactureMComponent},
+          {path: 'facture/D' , component: FactureMDComponent},
         ],
       },
 

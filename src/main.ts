@@ -24,6 +24,8 @@ import { CommandeMComponent } from './app/manageur/parts/Commande/commande.compo
 import { LoginComponent } from './app/Login/login.component';
 import { DashboardsMComponent } from './app/manageur/parts/dashboards/dashboards.component';
 import { NewMComponent } from './app/manageur/parts/Commande/new/new.component';
+import { FactureMComponent } from './app/manageur/parts/Facture/facture.component';
+import { FactureMDComponent } from './app/manageur/parts/Facture/Detaille/factureD.component';
 // import { AboutComponent } from './app/about.component';
 
 const routes: Routes = [
@@ -51,7 +53,9 @@ const routes: Routes = [
         { path:'commande' , 
           children: [
             {path: '' , component: CommandeMComponent},
-            {path: 'new' , component: NewMComponent }
+            {path: 'new' , component: NewMComponent },
+            {path: 'facture' , component: FactureMComponent},
+            {path: 'facture/D' , component: FactureMDComponent},
             
           ],
         },

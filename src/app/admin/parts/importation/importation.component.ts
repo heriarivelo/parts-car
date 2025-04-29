@@ -13,68 +13,6 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class ImportationComponent {
-  // articleData: Article = {
-  //   codeArt: '',
-  //   marque: '',
-  //   oem: '',
-  //   prix: 0,
-  //   poids: 0
-  // };
-
-  // closeModal() {
-  //   var import = 
-  // }
-
-  // constructor(private articleService: ArticleService) {}
-
-  // get importedData(): Article[] {
-  //   return this.articleService.getArticles();
-  // }
-
-  // addArticle() {
-  //   if (this.articleData.codeArt && this.articleData.marque) {
-  //     this.articleService.addArticle({ ...this.articleData });
-  //     this.resetForm();
-  //   }
-  // }
-
-  // resetForm() {
-  //   this.articleData = { codeArt: '', marque: '', oem: '', prix: 0, poids: 0 };
-  // }
-
-  // onFileChange(event: any) {
-  //   const file = event.target.files[0];
-  //   if (!file) return;
-
-  //   const reader = new FileReader();
-  //   reader.onload = (e: any) => {
-  //     const binaryStr = e.target.result;
-  //     const workbook = read(binaryStr, { type: 'binary' });
-  //     const firstSheetName = workbook.SheetNames[0];
-  //     const worksheet = workbook.Sheets[firstSheetName];
-
-  //     const excelData: any[] = utils.sheet_to_json(worksheet);
-
-  //     // Convertir les données Excel en objets Article
-  //     const articlesFromExcel: Article[] = excelData.map(row => ({
-  //       codeArt: row['codeArt'] || '',
-  //       marque: row['marque'] || '',
-  //       oem: row['oem'] || '',
-  //       prix: Number(row['prix'] || 0),
-  //       poids: Number(row['poids'] || 0)
-  //     }));
-
-  //     // Fusionner les nouvelles données
-  //     const currentArticles = this.articleService.getArticles();
-  //     this.articleService.setArticles([...currentArticles, ...articlesFromExcel]);
-  //   };
-
-  //   reader.readAsBinaryString(file);
-  // }
-
-  // getHeaders(): string[] {
-  //   return ['codeArt', 'marque', 'oem', 'prix', 'poids'];
-  // }
 
   shipments = [
     { id: 1, name: "Expédition 1", date: "2024-04-01", status: "En cours" },
