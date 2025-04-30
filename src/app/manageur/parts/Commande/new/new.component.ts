@@ -2,58 +2,70 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import axios from 'axios';
 
-export interface Article {
-  codeArt: string;
-  marque: string;
-  oem: string;
-  prix: number;
-  poids: number;
+interface ArticleCommande {
+  code_art: string;
+  lib1: string;
+  quantite: number;
+  prix_article: number;
 }
 
 @Component({
-  selector: 'app-new-commande',
-  standalone: true,
-  imports: [FormsModule, CommonModule ,  RouterModule],
+  selector: 'app-new',
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+  ],
   templateUrl: './new.component.html',
-  styleUrls: ['./new.component.css']
+  styleUrls: ['./new.component.scss']
 })
 export class NewMComponent {
-  codeArt = '';
-  marque = '';
-  oem = '';
-  prix: number | null = null;
-  poids: number | null = null;
+  commande = {
+    reference: 'C001',
+    mail_phone: '032 12 456 11',
+    articles_commande: [] as ArticleCommande[]
+  };
 
-  articles: Article[] = [];
+  nouvelArticle: ArticleCommande = {
+    code_art: '',
+    lib1: '',
+    quantite: 1,
+    prix_article: 0
+  };
 
   ajouterArticle() {
-    if (this.codeArt && this.marque && this.oem && this.prix !== null && this.poids !== null) {
-      const nouvelArticle: Article = {
-        codeArt: this.codeArt.trim(),
-        marque: this.marque.trim(),
-        oem: this.oem.trim(),
-        prix: this.prix,
-        poids: this.poids
-      };
-
-      this.articles.push(nouvelArticle);
-
-      // Réinitialiser les champs
-      this.codeArt = '';
-      this.marque = '';
-      this.oem = '';
-      this.prix = null;
-      this.poids = null;
+    if (this.nouvelArticle.code_art && this.nouvelArticle.lib1) {
+      this.commande.articles_commande.push({ ...this.nouvelArticle });
+      this.nouvelArticle = { code_art: '', lib1: '', quantite: 1, prix_article: 0 };
     }
   }
 
   supprimerArticle(index: number) {
-    this.articles.splice(index, 1);
+    this.commande.articles_commande.splice(index, 1);
   }
 
   enregistrerCommande() {
-    console.log('Commande enregistrée:', this.articles);
-    // Appel API ou autre logique ici
-  }
+    // // Structure de la commande à envoyer
+    // const commandeData = {
+    //   reference: this.commande.reference,
+    //   mail_phone: this.commande.mail_phone,
+    //   articles_commande: this.commande.articles_commande.map(article => ({
+    //     code_art: article.code_art,
+    //     lib1: article.lib1,
+    //     quantite: article.quantite,
+    //     prix_article: article.prix_article
+    //   }))
+    // };
+
+    // // Appel à l'API pour enregistrer la commande
+    // axios.post('https://ton-api-endpoint.com/commande', commandeData)
+    // .then(response => {
+    //   console.log('Commande enregistrée avec succès:', response.data);
+    // })
+    // .catch(error => {
+    //   console.error('Erreur lors de l\'enregistrement de la commande:', error);
+    // });
+}
 }

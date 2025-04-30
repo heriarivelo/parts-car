@@ -3,15 +3,15 @@ import { FooterComponent } from './footer/footer.component';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
-import { AdminSidebarComponent } from './admin/admin-sidebar/admin-sidebar.component';
 import { ManagerSidebarComponent } from './manageur/manager-sidebar/manager-sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AdminSidebarComponent } from "./admin/admin-sidebar/admin-sidebar.component";
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, AdminSidebarComponent, ManagerSidebarComponent, FooterComponent],
+  imports: [CommonModule, RouterOutlet, NavbarComponent, ManagerSidebarComponent, FooterComponent, AdminSidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -41,9 +41,5 @@ export const routes: Routes = [
   { path: 'manager/commande/new', component: NewMComponent },
   { path: 'manager/facture', component: FactureMComponent },
   { path: 'manager/facture/D', component: FactureMDComponent },
-       
-  { path: '', redirectTo: 'tableau-de-bord', pathMatch: 'full' },
-  // redirection par défaut si aucun chemin
-  { path: '', redirectTo: '/manager', pathMatch: 'full' },
-  { path: '**', redirectTo: '/manager' }
+      
 ];
