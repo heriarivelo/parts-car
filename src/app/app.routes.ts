@@ -11,7 +11,7 @@ import { CommandeComponent } from './admin/parts/Commande/commande.component';
 import { ArcticlesComponent } from './admin/parts/articles/articles.component';
 import { EntrepotComponent } from './admin/parts/entrepot/entrepot.component';
 import { ArcticlesMComponent } from './manageur/parts/articles/articles.component';
-import { CommandeMComponent } from './manageur/parts/Commande/commande.component';
+// import { CommandeMComponent } from './manageur/parts/Commande/commande.component';
 import { Routes } from '@angular/router';
 import { DashboardsMComponent } from './manageur/parts/dashboards/dashboards.component';
 import { LoginComponent } from './Login/login.component';
@@ -20,7 +20,7 @@ import { FactureMComponent } from './manageur/parts/Facture/facture.component';
 import { FactureMDComponent } from './manageur/parts/Facture/Detaille/factureD.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'reservation', component: ReservationComponent },
@@ -37,7 +37,7 @@ export const routes: Routes = [
 
   { path: 'manager/article', component: ArcticlesMComponent },
   { path: 'manager/tableau-de-bord', component: DashboardsMComponent },
-  { path: 'manager/commande', component: CommandeMComponent },
+  // { path: 'manager/commande', component: CommandeMComponent },
   { path: 'manager/commande/new', component: NewMComponent },
   { path: 'manager/facture', component: FactureMComponent },
   { path: 'manager/facture/D', component: FactureMDComponent },

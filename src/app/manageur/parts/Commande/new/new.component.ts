@@ -28,6 +28,14 @@ export class NewMComponent {
     articles_commande: [] as ArticleCommande[]
   };
 
+  ngOnInit() {
+    const storedCommande = localStorage.getItem('commande');
+    if (storedCommande) {
+      this.commande = JSON.parse(storedCommande);
+    }
+  }
+  
+
   nouvelArticle: ArticleCommande = {
     code_art: '',
     lib1: '',
@@ -46,7 +54,7 @@ export class NewMComponent {
     this.commande.articles_commande.splice(index, 1);
   }
 
-  enregistrerCommande() {
+  // enregistrerCommande() {
     // // Structure de la commande à envoyer
     // const commandeData = {
     //   reference: this.commande.reference,
@@ -67,5 +75,15 @@ export class NewMComponent {
     // .catch(error => {
     //   console.error('Erreur lors de l\'enregistrement de la commande:', error);
     // });
+// }
+enregistrerCommande() {
+  // Vérifier que la commande a une référence et des articles
+  if (this.commande.reference && this.commande.articles_commande.length > 0) {
+    // Enregistrer l'objet commande dans localStorage
+    localStorage.setItem('commande', JSON.stringify(this.commande));
+    alert('Commande enregistrée avec succès!');
+  } else {
+    alert('Veuillez remplir tous les champs de la commande.');
+  }
 }
 }
