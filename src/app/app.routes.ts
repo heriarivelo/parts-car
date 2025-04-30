@@ -2,7 +2,7 @@ import { CalculatriceComponent } from './admin/parts/calculatriceprix/calculatri
 import { StocksComponent } from './admin/parts/stocks/stocks.component';
 import { DashboardsComponent } from './admin/parts/dashboards/dashboards.component';
 import { ContactComponent } from './client/contact/contact.component';
-import { HomeComponent } from './client/home/home.component';
+// import { HomeComponent } from './client/home/home.component';
 import { ServicesComponent } from './client/services/services.component';
 import { ReservationComponent } from './client/reservation/reservation.component';
 import { VehiculesComponent } from './client/vehicules/vehicules.component';
@@ -20,7 +20,7 @@ import { FactureMComponent } from './manageur/parts/Facture/facture.component';
 import { FactureMDComponent } from './manageur/parts/Facture/Detaille/factureD.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '',redirectTo: '/login', pathMatch: 'full'  },
   { path: 'contact', component: ContactComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'reservation', component: ReservationComponent },

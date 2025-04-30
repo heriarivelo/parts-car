@@ -10,7 +10,7 @@ import { AppComponent } from './app/app.component';
 import { StocksComponent } from './app/admin/parts/stocks/stocks.component';
 import { DashboardsComponent } from './app/admin/parts/dashboards/dashboards.component';
 import { CalculatriceComponent } from './app/admin/parts/calculatriceprix/calculatrice.component';
-import { HomeComponent } from './app/client/home/home.component';
+// import { HomeComponent } from './app/client/home/home.component';
 import { ContactComponent } from './app/client/contact/contact.component';
 import { ServicesComponent } from './app/client/services/services.component';
 import { ReservationComponent } from './app/client/reservation/reservation.component';
@@ -29,7 +29,7 @@ import { FactureMDComponent } from './app/manageur/parts/Facture/Detaille/factur
 // import { AboutComponent } from './app/about.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'contact', component: ContactComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'reservation', component: ReservationComponent },
