@@ -14,7 +14,14 @@ import axios from 'axios';
 })
 
 export class CommandeMComponent implements OnInit {
+  totalPrice: any;
 
+
+  calculateTotalPrice() {
+    this.totalPrice = this.selectedCommande?.articles.reduce((total: number, article: any) => {
+      return total + (article.prix_article * article.quantite);
+    }, 0);
+  }
   commandes: any[] = [];
   selectedCommande: any = null;  // Pour stocker la commande sélectionnée
 
@@ -29,34 +36,26 @@ export class CommandeMComponent implements OnInit {
 
   showModal: boolean = false;
   showDetailModal: boolean = false;
+referenceFacture: any;
+status: any;
 
   // Ouvre le modal pour afficher les détails de la commande
-  openDetailModal(reference: any) {
-    const url = 'http://localhost:5000/api/facture';
-  
-    // Axios GET request with data in the body
-    axios({
-      method: 'get',        // Méthode GET
-      url: url,
-      headers: {            // Si vous avez besoin de spécifier des headers
-        'Content-Type': 'application/json'
-      },
-      data: {               // Corps de la requête
-        reference_commande: reference
-      }
-    })
-    .then(response => {
-      console.log('Réponse de l\'API:', response.data);
-      if (response.data.commande.success) {
-        this.selectedCommande = response.data.commande;  // Stocke la commande et ses articles
-      } else {
-        alert('Échec de la récupération des informations de la commande');
-      }
-    })
-    .catch(error => {
-      console.error('Erreur lors de la récupération des informations:', error);
-      alert('Une erreur est survenue lors de la récupération des informations de la commande.');
-    });
+  async openDetailModal(referencecommande: any) {
+    // const url = 'http://localhost:5000/api/facture';
+    
+    console.log(referencecommande);
+    const params = {
+      reference_commande: referencecommande
+    }
+    try {
+      const response = await axios.get('http://localhost:5000/api/facture', { params });
+      this.selectedCommande = response.data.commande;
+      console.log(this.selectedCommande);
+      this.calculateTotalPrice();
+      
+    } catch (error) {
+      console.error('Erreur lors de la récupération des commandes:', error);
+    }
   
     this.showDetailModal = true;
   }
@@ -95,30 +94,49 @@ export class CommandeMComponent implements OnInit {
   onSearch(): void {
     this.fetchCommandes();
   }
-
-  // Fonction pour valider la commande et envoyer les données au backend
   async validerFacture(): Promise<void> {
     if (!this.selectedCommande) {
       console.error('Commande non sélectionnée');
       return;
     }
-
+    let referenceCommandes = this.selectedCommande?.commande?.reference;
+  
+    // Vérification des données nécessaires
+    if ( !this.totalPrice || !this.status) {
+      console.error('Données manquantes pour la facture');
+      if (!this.totalPrice) console.error('Total price manquant');
+      if (!this.status) console.error('Status manquant');
+      return;
+    }
+  
+    // Préparation des données de la facture
     const factureData = {
-      reference_commande: this.selectedCommande.reference,
-      reference_fact: '',  // Ajouter la référence facture si nécessaire
-      prix_total: this.selectedCommande.total_commande,
-      type_remise: 'espece',  // Par défaut, vous pouvez ajuster en fonction des besoins
-      remise: 12000,
-      status: 'validé'  // Statut par défaut, ajuster si nécessaire
+      prix_total: this.totalPrice, // Assurez-vous que totalPrice est un nombre
+      reference_commande: referenceCommandes,
+      reference_fact: this.referenceFacture,
+      status: this.status,
+      type_remise: 'espece',  // Remise en espèces, ajustez si nécessaire
+      remise: 12000,  // Remise fixe de 12000, ajustez si nécessaire
     };
-
+  
+    console.log('Données de la facture:', factureData);
+  
     try {
+      // Envoi de la requête POST avec les données formatées
       const response = await axios.post('http://localhost:5000/api/facture/valider', factureData);
-      console.log('Facture validée avec succès:', response.data);
-      // Vous pouvez mettre à jour l'interface après la validation si nécessaire
-      this.closeModal();  // Ferme le modal après validation
+  
+      if (response.data) {
+        console.log('Facture validée avec succès:', response.data);
+        this.closeModal();  
+      } else {
+        console.error('Erreur lors de la validation de la facture:', response.data.message || 'Erreur inconnue');
+      }
     } catch (error) {
-      console.error('Erreur lors de la validation de la facture:', error);
+      console.error('Erreur lors de l\'appel API:', error);
+      alert('Une erreur est survenue lors de la validation de la facture');
     }
   }
+  
+  
+  
 }

@@ -91,17 +91,17 @@
       <!-- Content scrollable -->
       <div class="overflow-y-auto p-6 flex-1">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+                <label class="block text-gray-700 mb-2">Reference_facture</label>
+                <input class="w-full p-3 border border-gray-300 rounded-md" [(ngModel)]="referenceFacture" placeholder="Enter Reference Facture">
+              </div>
           <div>
-            <label class="block text-gray-700 mb-2">Nom Client</label>
-            <input class="w-full p-3 border border-gray-300 rounded-md" [value]="selectedCommande?.nom_client" disabled>
+            <label class="block text-gray-700 mb-2">Reference_Commande</label>
+            <input class="w-full p-3 border border-gray-300 rounded-md"  [value]="selectedCommande?.commande.reference" disabled>
           </div>
           <div>
-            <label class="block text-gray-700 mb-2">Téléphone / Email</label>
-            <input class="w-full p-3 border border-gray-300 rounded-md" [value]="selectedCommande?.mail_phone" disabled>
-          </div>
-          <div>
-            <label class="block text-gray-700 mb-2">Statut</label>
-            <input class="w-full p-3 border border-gray-300 rounded-md" [value]="selectedCommande?.status" disabled>
+            <label class="block text-gray-700 mb-2"></label>
+            <input class="w-full p-3 border border-gray-300 rounded-md" [(ngModel)]="status">
           </div>
         </div>
   
@@ -124,9 +124,16 @@
             </tbody>
           </table>
         </div>
+        <tfoot class="bg-gray-50">
+            <tr>
+              <td colspan="2" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Total</td>
+              <td class="px-6 py-3 text-sm text-gray-700">
+                {{ totalPrice }} Ar
+              </td>
+            </tr>
+          </tfoot>
       </div>
   
-      <!-- Footer -->
       <div class="p-4 border-t bg-gray-100 text-right">
         <button (click)="closeModal()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
           Fermer
