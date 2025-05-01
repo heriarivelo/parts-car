@@ -18,6 +18,7 @@ import { LoginComponent } from './Login/login.component';
 import { NewMComponent } from './manageur/parts/Commande/new/new.component';
 import { FactureMComponent } from './manageur/parts/Facture/facture.component';
 import { FactureMDComponent } from './manageur/parts/Facture/Detaille/factureD.component';
+import { CommandeMComponent } from './manageur/parts/Commande/commande.component';
 
 export const routes: Routes = [
   { path: '',redirectTo: '/login', pathMatch: 'full'  },
@@ -37,7 +38,7 @@ export const routes: Routes = [
 
   { path: 'manager/article', component: ArcticlesMComponent },
   { path: 'manager/tableau-de-bord', component: DashboardsMComponent },
-  // { path: 'manager/commande', component: CommandeMComponent },
+  { path: 'manager/commande', component: CommandeMComponent },
   { path: 'manager/commande/new', component: NewMComponent },
   { path: 'manager/facture', component: FactureMComponent },
   { path: 'manager/facture/D', component: FactureMDComponent },
