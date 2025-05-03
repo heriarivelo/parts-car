@@ -39,7 +39,6 @@ export class CommandeMComponent implements OnInit {
 referenceFacture: any;
 status: any;
 
-  // Ouvre le modal pour afficher les détails de la commande
   async openDetailModal(referencecommande: any) {
     // const url = 'http://localhost:5000/api/facture';
     
@@ -72,7 +71,6 @@ status: any;
     this.fetchCommandes();
   }
 
-  // Récupère la liste des commandes
   async fetchCommandes(): Promise<void> {
     const params = {
       reference: this.filters.reference,

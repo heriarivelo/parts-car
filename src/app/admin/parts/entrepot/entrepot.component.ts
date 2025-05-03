@@ -20,7 +20,6 @@ export class EntrepotComponent {
   selectedBox: any = null;
 
   constructor() {
-    // Générer 50 entrepôts
     this.boxes = Array.from({ length: 50 }, (_, i) => ({
       id: i + 1,
       items: [],

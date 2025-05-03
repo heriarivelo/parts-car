@@ -17,32 +17,31 @@
           </h2>
         </div>
   
-        <!-- Formulaire de recherche -->
-        <div class="p-4 border-b grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Référence</label>
-            <input [(ngModel)]="filters.reference" class="w-full border rounded px-3 py-2" placeholder="Référence">
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Statut</label>
-            <input [(ngModel)]="filters.status" class="w-full border rounded px-3 py-2" placeholder="Statut">
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Date début</label>
-            <input type="date" [(ngModel)]="filters.startDate" class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Date fin</label>
-            <input type="date" [(ngModel)]="filters.endDate" class="w-full border rounded px-3 py-2">
-          </div>
-        </div>
-  
-        <!-- Bouton de recherche -->
-        <div class="px-4 pb-4">
-          <button (click)="onSearch()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800">
-            Rechercher
-          </button>
-        </div>
+        <form (ngSubmit)="fetchCommandes()">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Référence</label>
+              <input [(ngModel)]="filters.reference" name="reference" class="w-full border rounded px-3 py-2" placeholder="Référence">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Statut</label>
+              <input [(ngModel)]="filters.status" name="status" class="w-full border rounded px-3 py-2" placeholder="Statut">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Date début</label>
+              <input type="date" [(ngModel)]="filters.startDate" name="startDate" class="w-full border rounded px-3 py-2">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Date fin</label>
+              <input type="date" [(ngModel)]="filters.endDate" name="endDate" class="w-full border rounded px-3 py-2">
+            </div>
+        
+            <!-- Bouton de recherche -->
+            <div class="px-4 pb-4 mt-4">
+              <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800">
+                Rechercher
+              </button>
+            </div>
+          </form>
   
         <!-- Tableau des commandes -->
         <div class="overflow-x-auto">
