@@ -51,10 +51,8 @@ export class StocksMComponent implements OnInit {
     };
   
     try {
-      // Appel asynchrone à l'API avec axios
       const response = await axios.get('http://localhost:5000/api/stock', { params });
       
-      // Mise à jour des produits avec les résultats récupérés
       this.produits = response.data.results;
     } catch (error) {
       console.error('Erreur API :', error);
