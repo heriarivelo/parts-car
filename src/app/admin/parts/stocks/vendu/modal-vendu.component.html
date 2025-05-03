@@ -1,0 +1,60 @@
+<div *ngIf="show" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-hidden">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl p-0 flex flex-col max-h-screen">
+      
+      <!-- Header -->
+      <div class="p-4 border-b flex justify-between items-center bg-green-700 text-white rounded-t-lg shadow-md">
+        <h3 class="text-lg font-semibold text-left">Détails du produit vendu</h3>
+        <button (click)="onClose()" class="text-white hover:text-gray-200 text-3xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+  
+      <!-- Chiffre d'Affaires -->
+      <div class="p-6 bg-gray-50 border-b grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white shadow-lg rounded-lg p-4 flex items-center justify-between space-x-4">
+          <span class="text-gray-700 font-medium">Total Chiffre d'Affaires :</span>
+          <span class="text-3xl font-bold text-green-700">{{  chiffreAffaire  | number:'1.0-0' }} Ar</span>
+        </div>
+      </div>
+  
+      <!-- Content -->
+      <div class="overflow-y-auto p-6 flex-1" *ngIf="produitsVendus && produitsVendus.length > 0; else aucunProduit">
+        <table class="w-full table-auto border-collapse bg-white shadow-md rounded-lg">
+          <thead>
+            <tr class="bg-gray-100 text-left text-sm text-gray-700">
+              <th class="px-6 py-3 border-b">Référence</th>
+              <th class="px-6 py-3 border-b">Libellé</th>
+              <th class="px-6 py-3 border-b">Quantité</th>
+              <th class="px-6 py-3 border-b">Prix Unité</th>
+              <th class="px-6 py-3 border-b">Prix Total</th>
+              <th class="px-6 py-3 border-b">Mail/Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let produitVendu of produitsVendus" class="hover:bg-gray-50 transition">
+              <td class="px-6 py-4 border-b text-gray-800">{{ produitVendu.reference }}</td>
+              <td class="px-6 py-4 border-b text-gray-800">{{ produitVendu.lib1 }}</td>
+              <td class="px-6 py-4 border-b text-gray-800">{{ produitVendu.quantite }}</td>
+              <td class="px-6 py-4 border-b text-gray-800">{{ produitVendu.prix_article }} Ar</td>
+              <td class="px-6 py-4 border-b text-gray-800">{{ produitVendu.prix_total }} Ar</td>
+              <td class="px-6 py-4 border-b text-gray-800">{{ produitVendu.mail_phone }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-template #aucunProduit>
+        <div class="text-center text-gray-500 py-10">
+          Aucun produit trouvé.
+        </div>
+      </ng-template>
+  
+      <!-- Footer actions -->
+      <div class="p-4 border-t flex justify-end space-x-3 bg-white rounded-b-lg">
+        <button (click)="onClose()" class="px-6 py-3 border rounded-md bg-green-700 text-white hover:bg-green-600 transition-all duration-300">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </div>
+  

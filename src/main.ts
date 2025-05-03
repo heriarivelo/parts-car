@@ -17,7 +17,6 @@ import { ReservationComponent } from './app/client/reservation/reservation.compo
 import { VehiculesComponent } from './app/client/vehicules/vehicules.component';
 import { ImportationComponent } from './app/admin/parts/importation/importation.component';
 import { CommandeComponent } from './app/admin/parts/Commande/commande.component';
-import { ArcticlesComponent } from './app/admin/parts/articles/articles.component';
 import { EntrepotComponent } from './app/admin/parts/entrepot/entrepot.component';
 import { ArcticlesMComponent } from './app/manageur/parts/articles/articles.component';
 import { CommandeMComponent } from './app/manageur/parts/Commande/commande.component';
@@ -26,6 +25,7 @@ import { DashboardsMComponent } from './app/manageur/parts/dashboards/dashboards
 import { NewMComponent } from './app/manageur/parts/Commande/new/new.component';
 import { FactureMComponent } from './app/manageur/parts/Facture/facture.component';
 import { FactureMDComponent } from './app/manageur/parts/Facture/Detaille/factureD.component';
+import { ArticlesComponent } from './app/admin/parts/articles/articles.component';
 // import { AboutComponent } from './app/about.component';
 
 const routes: Routes = [
@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'admin-tableau-de-bord', component: DashboardsComponent },
   { path: 'admin-calculatrice-prix', component: CalculatriceComponent },
   { path: 'import-data' , component: ImportationComponent },
-  { path: 'article' , component: ArcticlesComponent },
+  { path: 'article' , component: ArticlesComponent },
   { path: 'admin-commande' , component: CommandeComponent },
   { path: 'entrepot' , component: EntrepotComponent },
 

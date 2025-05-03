@@ -1,44 +1,128 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import axios from 'axios';
+
 
 @Component({
   selector: 'app-stocks',
   imports: [
     CommonModule,
+    FormsModule
   ],
   templateUrl: './stocks.component.html',
   styleUrl: './stocks.component.scss'
 })
-export class StocksComponent {
-  produits = [
-    { id: 1, description: 'Produit A', quantiteRestant: 20, quantiteVendu: 5 },
-    { id: 2, description: 'Produit B', quantiteRestant: 30, quantiteVendu: 10 },
-    { id: 3, description: 'Produit C', quantiteRestant: 15, quantiteVendu: 8 },
-    { id: 4, description: 'Produit D', quantiteRestant: 50, quantiteVendu: 12 }
-  ];
 
-  constructor() { }
+
+
+export class StocksComponent implements OnInit {
+  
+  produits: any[] = [];
+  panier: any[] = [];
+
+  reference: string = '';
+  status: string = '';
+  libelle: string = '';
+  nom_client: string = '';
+  mail_phone: string = '';
+
+  filtres = {
+    lib1: '',
+    marque: '',
+    oem: '',
+    auto: '',
+    page: 1,
+    limit: 10
+  };
 
   ngOnInit(): void {
+    this.rechercher();
   }
 
-  // Méthode pour supprimer un produit
-  supprimerProduit(id: number): void {
-    this.produits = this.produits.filter(product => product.id !== id);
-  }
-
-  // Méthode pour modifier un produit (vous pouvez personnaliser cette logique)
-  modifierProduit(id: number): void {
-    const produit = this.produits.find(p => p.id === id);
-    if (produit) {
-      const newDescription = prompt('Nouvelle description:', produit.description);
-      if (newDescription !== null) produit.description = newDescription;
-
-      const newQuantiteRestant = prompt('Nouvelle quantité restante:', produit.quantiteRestant.toString());
-      if (newQuantiteRestant !== null) produit.quantiteRestant = parseInt(newQuantiteRestant, 10) || produit.quantiteRestant;
-
-      const newQuantiteVendu = prompt('Nouvelle quantité vendue:', produit.quantiteVendu.toString());
-      if (newQuantiteVendu !== null) produit.quantiteVendu = parseInt(newQuantiteVendu, 10) || produit.quantiteVendu;
+  async rechercher(): Promise<void> {
+    const params = {
+      lib1: this.filtres.lib1,
+      marque: this.filtres.marque,
+      oem: this.filtres.oem,
+      auto: this.filtres.auto,
+      page: this.filtres.page.toString(),
+      limit: this.filtres.limit.toString(),
+    };
+  
+    try {
+      // Appel asynchrone à l'API avec axios
+      const response = await axios.get('http://localhost:5000/api/stock', { params });
+      
+      // Mise à jour des produits avec les résultats récupérés
+      this.produits = response.data.results;
+    } catch (error) {
+      console.error('Erreur API :', error);
     }
   }
+
+  showModal: boolean = false;
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  ajouterAuPanier(produit: any): void {
+    const produitDejaDansPanier = this.panier.find(item => item.lib1 === produit.lib1);
+
+    if (produitDejaDansPanier) {
+      
+      alert('Cet article est déjà dans votre panier!');
+    } else {
+      this.panier.push(produit);
+    }
+  }
+
+  validerCommande() {
+    const commande = {
+      reference: this.reference,
+      status: this.status,
+      libelle: this.libelle,
+      nom_client: this.nom_client,
+      mail_phone: this.mail_phone,
+      panier: this.panier.map(item => ({
+        lib1: item.lib1,
+        quantite: item.qte_ttl,
+        prix_article: item.prix_article
+      }))
+    };
+  
+    axios.post('http://localhost:5000/api/commande', commande)
+      .then(response => {
+        console.log('Commande envoyée avec succès', response.data);
+         this.reference = '';
+        this.nom_client = '';
+        this.mail_phone = '';
+        this.status = '';
+        this.libelle = '';
+        this.panier = [];
+        this.closeModal();
+      })
+      .catch(error => {
+        console.error('Erreur lors de l’envoi de la commande', error);
+      });
+  }
+  
+  mettreAJourQuantite(article: any, event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const nouvelleQuantite = Number(inputElement.value);
+  
+    const index = this.panier.indexOf(article);
+    if (index !== -1 && nouvelleQuantite > 0) {
+      this.panier[index].qte_ttl = nouvelleQuantite;
+    }
+  }
+  
+  supprimerArticle(article: any): void {
+    this.panier = this.panier.filter(p => p !== article);
+  }
+  
 }
