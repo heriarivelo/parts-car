@@ -73,15 +73,19 @@ export class StocksMComponent implements OnInit {
   ajouterAuPanier(produit: any): void {
     const produitDejaDansPanier = this.panier.find(item => item.lib1 === produit.lib1);
 
+
     if (produitDejaDansPanier) {
       
       alert('Cet article est déjà dans votre panier!');
     } else {
       this.panier.push(produit);
     }
+
+    console.log(this.panier);
+
   }
 
-  validerCommande() {
+  async validerCommande() {
     const commande = {
       reference: this.reference,
       status: this.status,
@@ -91,11 +95,13 @@ export class StocksMComponent implements OnInit {
       panier: this.panier.map(item => ({
         lib1: item.lib1,
         quantite: item.qte_ttl,
-        prix_article: item.prix_article
+        prix_article: item.prix_final
       }))
     };
-  
-    axios.post('http://localhost:5000/api/commande', commande)
+
+    console.log(commande.panier);
+
+      await axios.post('http://localhost:5000/api/commande', commande)
       .then(response => {
         console.log('Commande envoyée avec succès', response.data);
          this.reference = '';
