@@ -16,7 +16,7 @@ import axios from 'axios';
 
 
 
-export class StocksComponent implements OnInit {
+export class StocksMComponent implements OnInit {
   
   produits: any[] = [];
   panier: any[] = [];

@@ -26,6 +26,7 @@ import { NewMComponent } from './app/manageur/parts/Commande/new/new.component';
 import { FactureMComponent } from './app/manageur/parts/Facture/facture.component';
 import { FactureMDComponent } from './app/manageur/parts/Facture/Detaille/factureD.component';
 import { ArticlesComponent } from './app/admin/parts/articles/articles.component';
+import { StocksMComponent } from './app/manageur/parts/stocks/stocks.component';
 // import { AboutComponent } from './app/about.component';
 
 const routes: Routes = [
@@ -74,6 +75,8 @@ const routes: Routes = [
   { path: 'manager/commande/new', component: NewMComponent },
   { path: 'manager/facture', component: FactureMComponent },
   { path: 'manager/facture/D', component: FactureMDComponent },
+    { path: 'manager/stock' , component: StocksMComponent }
+  
       
 ];
 

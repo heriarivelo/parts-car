@@ -19,6 +19,7 @@ import { FactureMComponent } from './manageur/parts/Facture/facture.component';
 import { FactureMDComponent } from './manageur/parts/Facture/Detaille/factureD.component';
 import { CommandeMComponent } from './manageur/parts/Commande/commande.component';
 import { ArticlesComponent } from './admin/parts/articles/articles.component';
+import { StocksMComponent } from './manageur/parts/stocks/stocks.component';
 
 export const routes: Routes = [
   { path: '',redirectTo: '/login', pathMatch: 'full'  },
@@ -36,11 +37,13 @@ export const routes: Routes = [
   { path: 'article' , component: ArticlesComponent },
   { path: 'entrepot' , component: EntrepotComponent },
 
+  
   { path: 'manager/article', component: ArcticlesMComponent },
   { path: 'manager/tableau-de-bord', component: DashboardsMComponent },
   { path: 'manager/commande', component: CommandeMComponent },
   { path: 'manager/commande/new', component: NewMComponent },
   { path: 'manager/facture', component: FactureMComponent },
   { path: 'manager/facture/D', component: FactureMDComponent },
+  { path: 'manager/stock' , component: StocksMComponent }
       
 ];
