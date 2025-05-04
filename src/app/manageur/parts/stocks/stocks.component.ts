@@ -92,27 +92,28 @@ export class StocksMComponent implements OnInit {
       mail_phone: this.mail_phone,
       panier: this.panier.map(item => ({
         lib1: item.lib1,
-        quantite: item.qte_ttl,
-        prix_article: item.prix_final
+        quantite_voulu: item.qte_ttl // ou item.quantite_voulu selon ta source
       }))
     };
-
-    console.log(commande.panier);
-
-      await axios.post('http://localhost:5000/api/commande', commande)
-      .then(response => {
-        console.log('Commande envoyée avec succès', response.data);
-         this.reference = '';
-        this.nom_client = '';
-        this.mail_phone = '';
-        this.status = '';
-        this.libelle = '';
-        this.panier = [];
-        this.closeModal();
-      })
-      .catch(error => {
-        console.error('Erreur lors de l’envoi de la commande', error);
-      });
+  
+    console.log(commande);
+  
+    try {
+      const response = await axios.post('http://localhost:5000/api/commande', commande);
+      console.log('Commande envoyée avec succès', response.data);
+  
+      // Réinitialiser les champs
+      this.reference = '';
+      this.nom_client = '';
+      this.mail_phone = '';
+      this.status = '';
+      this.libelle = '';
+      this.panier = [];
+  
+      this.closeModal();
+    } catch (error) {
+      console.error('Erreur lors de l’envoi de la commande', error);
+    }
   }
   
   mettreAJourQuantite(article: any, event: Event): void {
