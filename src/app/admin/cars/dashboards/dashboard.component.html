@@ -1,0 +1,392 @@
+<div class="flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <div class="hidden md:flex md:flex-shrink-0">
+        <div class="flex flex-col w-64 bg-blue-800">
+            <div class="flex items-center h-16 px-4 bg-blue-900">
+                <i class="fas fa-car text-white text-2xl mr-2"></i>
+                <span class="text-white font-bold text-xl">AutoLoc</span>
+            </div>
+            <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto">
+                <nav class="flex-1 px-2 space-y-1">
+                    <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-white bg-blue-900 rounded-lg">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        Dashboard
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                        <i class="fas fa-car mr-3"></i>
+                        Véhicules
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                        <i class="fas fa-calendar-alt mr-3"></i>
+                        Réservations
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                        <i class="fas fa-users mr-3"></i>
+                        Clients
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                        <i class="fas fa-chart-line mr-3"></i>
+                        Statistiques
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                        <i class="fas fa-cog mr-3"></i>
+                        Paramètres
+                    </a>
+                </nav>
+            </div>
+            <div class="p-4 border-t border-blue-700">
+                <div class="flex items-center">
+                    <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-white">Jean Dupont</p>
+                        <p class="text-xs font-medium text-blue-200">Administrateur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="flex flex-col flex-1 overflow-hidden">
+        <!-- Top navigation -->
+        <div class="flex items-center justify-between h-16 px-6 bg-white border-b border-gray-200">
+            <div class="flex items-center">
+                <button class="text-gray-500 md:hidden" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="relative ml-4">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </span>
+                    <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-gray-100 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Rechercher...">
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div class="relative">
+                    <button class="flex items-center space-x-2 focus:outline-none" onclick="toggleProfileDropdown()">
+                        <span class="text-sm font-medium text-gray-700">Jean Dupont</span>
+                        <img class="w-8 h-8 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
+                    </button>
+                    <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mon profil</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paramètres</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile sidebar (hidden by default) -->
+        <div id="mobileSidebar" class="hidden bg-blue-800 md:hidden">
+            <div class="flex items-center justify-between h-16 px-4 bg-blue-900">
+                <span class="text-white font-bold text-xl">AutoLoc</span>
+                <button class="text-white" onclick="toggleSidebar()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="px-2 py-4 space-y-1">
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-white bg-blue-900 rounded-lg">
+                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                    <i class="fas fa-car mr-3"></i>
+                    Véhicules
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                    <i class="fas fa-calendar-alt mr-3"></i>
+                    Réservations
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                    <i class="fas fa-users mr-3"></i>
+                    Clients
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                    <i class="fas fa-chart-line mr-3"></i>
+                    Statistiques
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-blue-200 hover:text-white hover:bg-blue-700 rounded-lg">
+                    <i class="fas fa-cog mr-3"></i>
+                    Paramètres
+                </a>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 overflow-auto p-6">
+            <div class="mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">Tableau de bord</h1>
+                <p class="text-gray-600">Bienvenue sur votre espace d'administration</p>
+            </div>
+
+            <!-- Stats cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Réservations aujourd'hui</p>
+                            <p class="mt-1 text-3xl font-semibold text-gray-900">12</p>
+                            <p class="mt-1 text-sm text-green-600">+2.5% vs hier</p>
+                        </div>
+                        <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                            <i class="fas fa-calendar-check text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Véhicules disponibles</p>
+                            <p class="mt-1 text-3xl font-semibold text-gray-900">24</p>
+                            <p class="mt-1 text-sm text-red-600">-3% vs hier</p>
+                        </div>
+                        <div class="p-3 rounded-full bg-green-100 text-green-600">
+                            <i class="fas fa-car text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Revenu ce mois</p>
+                            <p class="mt-1 text-3xl font-semibold text-gray-900">€8,450</p>
+                            <p class="mt-1 text-sm text-green-600">+15% vs mois dernier</p>
+                        </div>
+                        <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-euro-sign text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Clients actifs</p>
+                            <p class="mt-1 text-3xl font-semibold text-gray-900">143</p>
+                            <p class="mt-1 text-sm text-green-600">+8% vs mois dernier</p>
+                        </div>
+                        <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                            <i class="fas fa-users text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts and recent bookings -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <!-- Revenue chart -->
+                <div class="bg-white rounded-lg shadow p-6 lg:col-span-2">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-medium text-gray-900">Revenu mensuel</h2>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-md">Mois</button>
+                            <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-md">Année</button>
+                        </div>
+                    </div>
+                    <div class="h-64">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Vehicle status -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Statut des véhicules</h2>
+                    <div class="h-64">
+                        <canvas id="vehicleStatusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent bookings and popular vehicles -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Recent bookings -->
+                <div class="bg-white rounded-lg shadow p-6 lg:col-span-2">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-medium text-gray-900">Réservations récentes</h2>
+                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800">Voir tout</a>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Véhicule</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dates</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/12.jpg" alt="">
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Sophie Martin</div>
+                                                <div class="text-sm text-gray-500">sophie.m&#64;example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">Peugeot 308</div>
+                                        <div class="text-sm text-gray-500">AB-123-CD</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">15-20 Juin 2023</div>
+                                        <div class="text-sm text-gray-500">5 jours</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Confirmée</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900">Détails</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/men/45.jpg" alt="">
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Thomas Leroy</div>
+                                                <div class="text-sm text-gray-500">thomas.l&#64;example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">Renault Clio</div>
+                                        <div class="text-sm text-gray-500">EF-456-GH</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">18-25 Juin 2023</div>
+                                        <div class="text-sm text-gray-500">7 jours</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En attente</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900">Détails</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/32.jpg" alt="">
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Émilie Dubois</div>
+                                                <div class="text-sm text-gray-500">emilie.d&#64;example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">BMW Série 3</div>
+                                        <div class="text-sm text-gray-500">IJ-789-KL</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">10-15 Juin 2023</div>
+                                        <div class="text-sm text-gray-500">5 jours</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Terminée</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900">Détails</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Popular vehicles -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-medium text-gray-900">Véhicules populaires</h2>
+                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800">Voir tout</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <img class="w-16 h-16 rounded-md object-cover" src="https://cdn.imagin.studio/getImage?customer=frbcmsimaginstage&make=peugeot&modelFamily=308&modelRange=peugeot&modelVariant=hb&modelYear=2022&powerTrain=fossil&transmission=0&zoomType=fullscreen&angle=23" alt="Peugeot 308">
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-900">Peugeot 308</h3>
+                                <p class="text-xs text-gray-500">5 réservations ce mois</p>
+                                <div class="mt-1 flex items-center">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star-half-alt text-yellow-400 text-xs"></i>
+                                        <span class="text-xs text-gray-500 ml-1">4.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="ml-auto text-sm font-medium text-gray-900">€45/jour</span>
+                        </div>
+                        <div class="flex items-start">
+                            <img class="w-16 h-16 rounded-md object-cover" src="https://cdn.imagin.studio/getImage?customer=frbcmsimaginstage&make=renault&modelFamily=clio&modelRange=renault&modelVariant=hb&modelYear=2022&powerTrain=fossil&transmission=0&zoomType=fullscreen&angle=23" alt="Renault Clio">
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-900">Renault Clio</h3>
+                                <p class="text-xs text-gray-500">4 réservations ce mois</p>
+                                <div class="mt-1 flex items-center">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="far fa-star text-yellow-400 text-xs"></i>
+                                        <span class="text-xs text-gray-500 ml-1">4.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="ml-auto text-sm font-medium text-gray-900">€35/jour</span>
+                        </div>
+                        <div class="flex items-start">
+                            <img class="w-16 h-16 rounded-md object-cover" src="https://cdn.imagin.studio/getImage?customer=frbcmsimaginstage&make=bmw&modelFamily=3-series&modelRange=bmw&modelVariant=hb&modelYear=2022&powerTrain=fossil&transmission=0&zoomType=fullscreen&angle=23" alt="BMW Série 3">
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-900">BMW Série 3</h3>
+                                <p class="text-xs text-gray-500">3 réservations ce mois</p>
+                                <div class="mt-1 flex items-center">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <span class="text-xs text-gray-500 ml-1">5.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="ml-auto text-sm font-medium text-gray-900">€75/jour</span>
+                        </div>
+                        <div class="flex items-start">
+                            <img class="w-16 h-16 rounded-md object-cover" src="https://cdn.imagin.studio/getImage?customer=frbcmsimaginstage&make=volkswagen&modelFamily=golf&modelRange=volkswagen&modelVariant=hb&modelYear=2022&powerTrain=fossil&transmission=0&zoomType=fullscreen&angle=23" alt="Volkswagen Golf">
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-900">Volkswagen Golf</h3>
+                                <p class="text-xs text-gray-500">3 réservations ce mois</p>
+                                <div class="mt-1 flex items-center">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <i class="fas fa-star-half-alt text-yellow-400 text-xs"></i>
+                                        <span class="text-xs text-gray-500 ml-1">4.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="ml-auto text-sm font-medium text-gray-900">€50/jour</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

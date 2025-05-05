@@ -1,18 +1,60 @@
-<div class="min-h-screen flex flex-col">
-    <!-- Navbar sticky -->
-    <header class="sticky top-0 z-50 bg-white shadow-md">
-      <app-navbar></app-navbar>
-    </header>
-  
-    <!-- Contenu principal -->
-    <main class="flex-grow">
-      <router-outlet></router-outlet>
-    </main>
-  
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4">
-      <app-footer></app-footer>
-    </footer>
+<div class="flex flex-col min-h-screen">
+  <!-- Condition pour afficher sidebar ou navbar -->
+  <ng-container *ngIf="isAdminOrModerator(); else clientNavbar">
+    <!-- Sidebar pour admin/moderateur -->
+    <div class="flex flex-1">
+      <aside class="w-64 h-screen sticky top-0 bg-gray-800 text-white">
+        <app-admin-sidebar></app-admin-sidebar>
+      </aside>
+
+      <!-- Contenu principal avec marge pour la sidebar -->
+      <main class="flex-1 p-4">
+        <nav class="px-6 py-4 mx-auto max-w-screen-xl flex justify-between items-center rounded-lg shadow-md bg-white mb-4">
+          <!-- Logo + Titre -->
+          <div class="flex items-center gap-3 ">
+            <img class="h-10 w-10" src="logo/android-chrome-192x192.png" alt="Logo Kaleocar">
+            <a routerLink="/" class="text-2xl font-extrabold text-gray-800 hover:text-primary transition-colors duration-300">
+              <span class="text-primary">Kaleo</span>Parts
+            </a>
+          </div>
+        
+          <!-- Bouton Déconnexion amélioré -->
+          <div>
+            <button (click)="logout()" 
+              class="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white px-5 py-2 rounded-lg font-semibold shadow-lg hover:from-red-600 hover:to-red-800 transition-all duration-300">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 002 2h3a2 2 0 002-2v-1m0-8V7a2 2 0 00-2-2h-3a2 2 0 00-2 2v1" />
+              </svg>
+        
+              <span class="hidden sm:inline">Déconnexion</span>
+            </button>
+          </div>
+        </nav>
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </ng-container>
+
+  <!-- Template pour le navbar des clients/utilisateurs normaux -->
+  <ng-template #clientNavbar>
+    <div class="min-h-screen flex flex-col">
+      <!-- Navbar sticky -->
+      <header class="sticky top-0 z-50 bg-white shadow-md">
+        <app-navbar></app-navbar>
+      </header>
+
+      <!-- Contenu principal -->
+      <main class="flex-grow p-4">
+        <router-outlet></router-outlet>
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-gray-800 text-white py-4">
+        <app-footer></app-footer>
+      </footer>
+    </div>
+  </ng-template>
     <div class="fixed bottom-6 right-6 z-50 animate-float">
       <a href="#" class="bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center hover:bg-green-600 transition">
           <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
