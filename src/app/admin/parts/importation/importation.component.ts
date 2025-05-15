@@ -1,6 +1,7 @@
-import { Component, } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import * as XLSX from 'xlsx';  // Importer la bibliothèque xlsx
 
 @Component({
   selector: 'app-importation',
@@ -11,96 +12,123 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './importation.component.html',
   styleUrl: './importation.component.scss'
 })
-
 export class ImportationComponent {
-
-  shipments = [
-    { id: 1, name: "Expédition 1", date: "2024-04-01", status: "En cours" },
-    { id: 2, name: "Expédition 2", date: "2024-04-05", status: "Livré" },
-    { id: 3, name: "Expédition 3", date: "2024-04-10", status: "En attente" }
-  ];
-
-  boutiqueItems = [
-    { id: 1, name: "Pièce A", price: "50€", image: "https://via.placeholder.com/150" },
-    { id: 2, name: "Pièce B", price: "75€", image: "https://via.placeholder.com/150" },
-    { id: 3, name: "Pièce C", price: "100€", image: "https://via.placeholder.com/150" }
-  ];
   showImportModal: boolean = false;
   selectedFileName: string | null = null;
   updateExisting = false;
   addNewPieces = false;
+  description: string = '';
+  marge: number | null = null;
+  fret: number | null = null;
+  shipments: any[] = [];
 
   ngOnInit(): void {
     this.renderShipments();
     this.renderBoutique();
     this.setupTabs();
   }
+
   openImportModal() {
     this.showImportModal = true;
   }
 
-  // Fonction pour fermer la modal
   closeImportModal() {
     this.showImportModal = false;
   }
-
-  // Fonction pour effectuer l'importation
-  importFile() {
-    if (!this.selectedFileName) {
-      alert('Veuillez sélectionner un fichier avant d\'importer.');
-      return;
-    }
-
-    // Logique d'importation du fichier (exemple de traitement)
-    console.log('Importation du fichier:', this.selectedFileName);
-    console.log('Mettre à jour les pièces existantes:', this.updateExisting);
-    console.log('Ajouter les nouvelles pièces:', this.addNewPieces);
-
-    // Simuler l'importation et fermer la modal
-    this.closeImportModal();
-  }
-
 
   handleFileInput(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.selectedFileName = file.name;
+      this.readExcel(file);
     }
   }
 
+  async readExcel(file: File) {
+    const reader = new FileReader();
+    reader.onload = async (e: any) => {
+      const data = e.target.result;
+      const workbook = XLSX.read(data, { type: 'binary' });
+
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
+
+      const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+      // Attendre la conversion de chaque image en Base64
+      this.shipments = await Promise.all(jsonData.map(async (row: any) => ({
+        codeArt: row["CODE_ART"],
+        marque: row["marque1_marque2"],
+        oem: row["oem1_oem2"],
+        autoFinal: row["auto_final"],
+        lib1: row["LIB1"],
+        qte: row["Qte"],
+        qteArv: row["qte_arv"],
+        prixUnit: row["PRIX_UNIT"],
+        poidsNet: row["POIDS_NET"],
+        prixDeVente: row["prix_de_vente"],
+        photo: await this.convertImageToBase64(row["photo"])
+      })));
+
+      this.renderShipments();
+    };
+    reader.readAsBinaryString(file);
+    this.closeImportModal();
+  }
+
+  async convertImageToBase64(imagePath: string): Promise<string> {
+    if (imagePath.startsWith('data:image')) {
+      return imagePath;
+    }
+
+    const img = new Image();
+    img.src = imagePath;
+
+    return new Promise<string>((resolve, reject) => {
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx?.drawImage(img, 0, 0);
+        const base64 = canvas.toDataURL();
+        resolve(base64);
+      };
+      img.onerror = reject;
+    });
+  }
 
   renderShipments() {
-    const shipmentList = document.getElementById('shipment-list');
-    if (shipmentList) {
-      shipmentList.innerHTML = ''; // Vider avant de remplir
+    const shipmentsList = document.getElementById('shipments-list');
+    if (shipmentsList) {
+      shipmentsList.innerHTML = ''; 
+
       this.shipments.forEach((shipment) => {
-        const div = document.createElement('div');
-        div.className = 'bg-white p-6 rounded-lg shadow-md';
-        div.innerHTML = `
-          <h3 class="text-xl font-semibold mb-2">${shipment.name}</h3>
-          <p class="text-gray-600 mb-2">Date : ${shipment.date}</p>
-          <p class="text-gray-800 font-medium">Statut : ${shipment.status}</p>
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${shipment.codeArt}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${shipment.marque}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${shipment.oem}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${shipment.autoFinal}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${shipment.lib1}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${shipment.qte}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${shipment.qteArv}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${shipment.prixUnit}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${shipment.poidsNet}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${shipment.prixDeVente}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <img src="${shipment.photo}" alt="photo" class="w-16 h-16 object-contain" />
+          </td>
+
         `;
-        shipmentList.appendChild(div);
+
+        shipmentsList.appendChild(row);
       });
     }
   }
 
   renderBoutique() {
-    const boutiqueList = document.getElementById('boutique-list');
-    if (boutiqueList) {
-      boutiqueList.innerHTML = ''; // Vider avant de remplir
-      this.boutiqueItems.forEach((item) => {
-        const div = document.createElement('div');
-        div.className = 'bg-white p-6 rounded-lg shadow-md flex flex-col items-center';
-        div.innerHTML = `
-          <img src="${item.image}" alt="${item.name}" class="w-32 h-32 mb-4 object-cover rounded">
-          <h3 class="text-xl font-semibold mb-2">${item.name}</h3>
-          <p class="text-gray-800 font-medium">${item.price}</p>
-        `;
-        boutiqueList.appendChild(div);
-      });
-    }
+    // Vous pouvez ajouter un rendu pour la section Boutique ici si nécessaire.
   }
 
   setupTabs() {
@@ -128,4 +156,14 @@ export class ImportationComponent {
     }
   }
 
+  onSubmit() {
+    console.log('Description:', this.description);
+    console.log('Marge:', this.marge);
+    console.log('Fret:', this.fret);
+    console.log('Mettre à jour les pièces existantes:', this.updateExisting);
+    console.log('Ajouter les nouvelles pièces:', this.addNewPieces);
+
+    alert('Importation réussie');
+    this.closeImportModal();
+  }
 }

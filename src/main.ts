@@ -1,9 +1,4 @@
-// import { bootstrapApplication } from '@angular/platform-browser';
-// import { appConfig } from './app/app.config';
-// import { AppComponent } from './app/app.component';
 
-// bootstrapApplication(AppComponent, appConfig)
-//   .catch((err) => console.error(err));
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
 import { AppComponent } from './app/app.component';
@@ -27,6 +22,8 @@ import { FactureMComponent } from './app/manageur/parts/Facture/facture.componen
 import { FactureMDComponent } from './app/manageur/parts/Facture/Detaille/factureD.component';
 import { ArticlesComponent } from './app/admin/parts/articles/articles.component';
 import { StocksMComponent } from './app/manageur/parts/stocks/stocks.component';
+import { TesteComponent } from './app/teste/teste.component';
+import { TestComponent } from './app/admin/parts/test/test.component';
 // import { AboutComponent } from './app/about.component';
 
 const routes: Routes = [
@@ -45,6 +42,8 @@ const routes: Routes = [
   { path: 'article' , component: ArticlesComponent },
   { path: 'admin-commande' , component: CommandeComponent },
   { path: 'entrepot' , component: EntrepotComponent },
+  { path: 'teste' , component: TestComponent },
+  
 
   // {
   //   path: 'manager',
@@ -75,7 +74,8 @@ const routes: Routes = [
   { path: 'manager/commande/new', component: NewMComponent },
   { path: 'manager/facture', component: FactureMComponent },
   { path: 'manager/facture/D', component: FactureMDComponent },
-    { path: 'manager/stock' , component: StocksMComponent }
+  { path: 'manager/stock' , component: StocksMComponent },
+  { path: 'teste' , component: TesteComponent },
   
       
 ];
@@ -83,3 +83,5 @@ const routes: Routes = [
 bootstrapApplication(AppComponent, {
   providers: [provideRouter(routes)]
 });
+
+

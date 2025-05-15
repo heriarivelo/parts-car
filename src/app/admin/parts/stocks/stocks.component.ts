@@ -21,31 +21,25 @@ export class StocksComponent implements OnInit {
 
   produits: any[] = [];
 
-  filtres = {
-    lib1: '',
-    marque: '',
-    oem: '',
-    auto: '',
-    page: 1,
-    limit: 10
-  };
 showDetailModal: any;
 showVenduModal: any;
 selectedProductDetail: any;
 selectedProductVendu: any;
+searchQuery: string = '';
+page: number = 1;
+totalPages: number = 1;
+limit: number = 10;
+
 
   ngOnInit(): void {
-    this.rechercher();
+    this.rechercher(this.page);
   }
 
-  async rechercher(): Promise<void> {
+  async rechercher(page: number): Promise<void> {
     const params = {
-      lib1: this.filtres.lib1,
-      marque: this.filtres.marque,
-      oem: this.filtres.oem,
-      auto: this.filtres.auto,
-      page: this.filtres.page.toString(),
-      limit: this.filtres.limit.toString(),
+      searchQuery: this.searchQuery,
+      page: page,
+      limit: this.limit.toString(),
     };
 
     try {
@@ -61,7 +55,7 @@ selectedProductVendu: any;
       this.showDetailModal = true;
       const response = await axios.get(`http://localhost:5000/api/stock/detail?lib=${lib1}`);
       this.selectedProductDetail = response.data; 
-      // console.log(response.data);
+      console.log(response.data);
       
     } catch (error) {
       console.error('Error fetching product details:', error);
@@ -87,5 +81,18 @@ selectedProductVendu: any;
   closeDetail() {
     this.showDetailModal = false;
    
+  }
+  nextPage(): void {
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.rechercher(this.page);
+    }
+  }
+
+  previousPage(): void {
+    if (this.page > 1) {
+      this.page--;
+      this.rechercher(this.page);
+    }
   }
 }

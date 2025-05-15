@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FooterComponent } from './footer/footer.component';
+// import { FooterComponent } from './footer/footer.component';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
@@ -11,7 +11,7 @@ import { AdminSidebarComponent } from "./admin/admin-sidebar/admin-sidebar.compo
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, ManagerSidebarComponent, FooterComponent, AdminSidebarComponent],
+  imports: [CommonModule, RouterOutlet, NavbarComponent, ManagerSidebarComponent, AdminSidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

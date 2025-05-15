@@ -13,48 +13,85 @@ import axios from 'axios';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-  articles: any = { results: [] };
+  articles: any[] = [];  // articles est un tableau pour *ngFor
   page: number = 1;
   totalPages: number = 1;
-  limit: any = 10;
-  code_art: any;
-  marque1_marque2: any;
-  oem1_oem2: any;
-  auto_final: any;
-  lib1: any;
+  limit: number = 10;
+  searchQuery: string = ''; 
 
   ngOnInit(): void {
     this.loadArticles(this.page);
   }
-  loadArticles(page: number): void {
+
+  // loadArticles(page: number): void {
+  //   const requestData = {
+  //     page: page,
+  //     limit: this.limit,
+  //     searchQuery: this.searchQuery  // côté backend, ne filtre pas sur code_art !
+  //   };
   
+  //   axios.post('http://localhost:5000/api/article', requestData)
+  //     .then(response => {
+  //       if (response.data && Array.isArray(response.data.results)) {
+  //         this.articles = response.data.results;
+  //         this.page = response.data.page || this.page;
+  //         this.totalPages = response.data.totalPages || this.totalPages;
+  //         console.log(this.articles);
+  //       } else {
+  //         this.articles = [];
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error("Il y a eu une erreur en récupérant les articles:", error);
+  //       this.articles = [];
+  //     });
+  // }
+  loadArticles(page: number): void {
     const requestData = {
       page: page,
       limit: this.limit,
-      code_art: this.code_art,
-      marque1_marque2: this.marque1_marque2,
-      oem1_oem2: this.oem1_oem2,
-      auto_final: this.auto_final,
-      lib1: this.lib1
+      searchQuery: this.searchQuery // côté backend, ne filtre pas sur code_art !
     };
   
     axios.post('http://localhost:5000/api/article', requestData)
       .then(response => {
-        console.log(response.data);
-        
-        if (response.data) {
-          this.articles = response.data.results; 
+        if (response.data && Array.isArray(response.data.results)) {
+          // On prépare les articles
+          this.articles = response.data.results.map((article: any) => {
+            // Ajouter le préfixe base64 à la photo si nécessaire
+            if (article.photo && !article.photo.startsWith('data:image')) {
+              article.photo = `data:image/png;base64,${article.photo}`;
+            }
+  
+            // Gérer aussi les photos dans importation (si présentes)
+            if (Array.isArray(article.importation)) {
+              article.importation = article.importation.map((item: any) => {
+                return {
+                  ...item,
+                  photo: item.photo && !item.photo.startsWith('data:image')
+                    ? `data:image/png;base64,${item.photo}`
+                    : item.photo
+                };
+              });
+            }
+  
+            return article;
+          });
+  
           this.page = response.data.page || this.page;
-          this.totalPages = response.data.totalPages || this.totalPages; 
+          this.totalPages = response.data.totalPages || this.totalPages;
+          console.log(this.articles);
+        } else {
+          this.articles = [];
         }
       })
       .catch(error => {
         console.error("Il y a eu une erreur en récupérant les articles:", error);
+        this.articles = [];
       });
   }
   
-  
-  // Pour naviguer à la page suivante
+
   nextPage(): void {
     if (this.page < this.totalPages) {
       this.page++;
@@ -62,7 +99,6 @@ export class ArticlesComponent implements OnInit {
     }
   }
 
-  // Pour revenir à la page précédente
   previousPage(): void {
     if (this.page > 1) {
       this.page--;

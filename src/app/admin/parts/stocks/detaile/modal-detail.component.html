@@ -9,28 +9,40 @@
         </button>
       </div>
   
-    
-        <div class="p-6 bg-gray-50 border-b grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-white shadow rounded-lg p-4 flex items-center justify-between">
-                <span class="text-gray-700 font-medium">Total Quantité Vendue :</span>
-                <span class="text-2xl font-bold text-green-600">{{ totalQuantiteVendue }}</span>
-            </div>
-        </div>
-  
+
   
       <!-- Tableau -->
       <div class="overflow-y-auto p-6 flex-1" *ngIf="produits && produits.length > 0; else aucunProduit">
+        <div class="p-6 bg-gray-50 border-b grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+          <!-- Image produit -->
+          <div *ngIf="produits?.[0]?.photo" class="flex justify-center">
+            <img [src]="produits[0].photo" alt="Photo du produit" class="w-48 h-48 object-cover rounded shadow" />
+          </div>
+
+          <!-- Infos texte -->
+          <div class="flex flex-col justify-center space-y-4">
+            <div class="bg-white shadow rounded-lg p-4">
+              <span class="block text-gray-700 text-sm">Libellé :</span>
+              <span class="text-xl font-semibold text-gray-900">{{ produits[0]?.lib1 }}</span>
+            </div>
+
+            <div class="bg-white shadow rounded-lg p-4">
+              <span class="block text-gray-700 text-sm">Total Quantité Vendue :</span>
+              <span class="text-2xl font-bold text-green-600">{{ totalQuantiteVendue }}</span>
+            </div>
+          </div>
+        </div>
         <table class="min-w-full text-sm border-collapse rounded-lg overflow-hidden">
           <thead class="bg-gray-100 text-gray-700 sticky top-0 z-10">
             <tr>
               <th class="px-4 py-2 border text-left">#</th>
               <th class="px-4 py-2 border text-left">Code</th>
-              <th class="px-4 py-2 border text-left">Libellé</th>
               <th class="px-4 py-2 border text-right">Qté</th>
               <th class="px-4 py-2 border text-right">Qté Vendue</th>
               <th class="px-4 py-2 border text-right">Prix (Ar)</th>
               <th class="px-4 py-2 border text-left">Entrepôt</th>
               <th class="px-4 py-2 border text-left">Créé le</th>
+              <th class="px-4 py-2 border text-left">reference d' importation</th>
               <th class="px-4 py-2 border text-center">Actions</th>
             </tr>
           </thead>
@@ -38,12 +50,12 @@
             <tr *ngFor="let produit of produits; let i = index" class="hover:bg-gray-50">
               <td class="px-4 py-2 border">{{ i + 1 }}</td>
               <td class="px-4 py-2 border">{{ produit.code_art }}</td>
-              <td class="px-4 py-2 border">{{ produit.lib1 }}</td>
               <td class="px-4 py-2 border text-right">{{ produit.quantite }}</td>
               <td class="px-4 py-2 border text-right">{{ produit.quantite_vendu }}</td>
               <td class="px-4 py-2 border text-right">{{ produit.prix_final }}</td>
               <td class="px-4 py-2 border">{{ produit.entrepots }}</td>
               <td class="px-4 py-2 border">{{ produit.createdAt | date:'short' }}</td>
+              <td class="px-4 py-2 border">{{ produit.description }}</td>
               <td class="px-4 py-2 border text-center space-x-2">
                 <button (click)="onModifier()" class="text-blue-600 hover:underline">Modifier</button>
                 <button (click)="onSupprimer()" class="text-red-600 hover:underline">Supprimer</button>

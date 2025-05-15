@@ -19,40 +19,21 @@
           
           <div class="p-4 border-b">
             <form (ngSubmit)="loadArticles(page)">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <input type="text" id="code_art" [(ngModel)]="code_art" name="code_art"
-                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                           placeholder="Code article">
+                      <input type="text" id="search" [(ngModel)]="searchQuery" name="searchQuery"
+                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
+                             placeholder="Rechercher par libellé, marque ou OEM">
                   </div>
-                  <div>
-                    <input type="text" id="lib1" [(ngModel)]="lib1" name="lib1"
-                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                           placeholder="Libellé">
-                  </div>
-                  <div>
-                    <input type="text" id="marque1_marque2" [(ngModel)]="marque1_marque2" name="marque1_marque2"
-                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                           placeholder="Marque 1 + Marque 2">
-                  </div>
-                  <div>
-                    <input type="text" id="oem1_oem2" [(ngModel)]="oem1_oem2" name="oem1_oem2"
-                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                           placeholder="OEM 1 + OEM 2">
-                  </div>
-                  <div>
-                    <input type="text" id="auto_final" [(ngModel)]="auto_final" name="auto_final"
-                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
-                           placeholder="Auto Final">
-                  </div>
-                </div>
-                <div class="flex justify-end mt-4">
+              </div>
+              <div class="flex justify-end mt-4">
                   <button type="submit"
                           class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Rechercher
+                      Rechercher
                   </button>
-                </div>
-              </form>
+              </div>
+          </form>
+          
               
           </div>
           <div class="overflow-x-auto">
@@ -70,7 +51,9 @@
               <tbody class="bg-white divide-y divide-gray-200">
                 <!-- Boucle sur les articles -->
                 <tr *ngFor="let article of articles">
-                  <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ article.id }}</td>
+                  <td class="px-6 py-4 text-sm font-medium text-gray-900">
+                    <img *ngIf="article.photo" [src]="article.photo" width="150" height="150" />
+                  </td>
                   <td class="px-6 py-4 text-sm text-gray-500">{{ article.lib1 }}</td>
                   <td class="px-6 py-4 text-sm text-gray-500">{{ article.marque1_marque2 }}</td>
                   <td class="px-6 py-4 text-sm text-gray-500">{{ article.oem1_oem2 }}</td>
@@ -85,16 +68,17 @@
           </div>
   
           <!-- Pagination -->
-          <div class="flex justify-center mt-6">
-            <button 
-              *ngIf="page > 1" 
-              class="px-4 py-2 bg-gray-800 text-white rounded-l" 
-              (click)="loadArticles(page - 1)">Précédent</button>
-            <button 
+          <button *ngIf="page > 1" 
+              class="px-4 py-2 bg-gray-800 text-white rounded-l hover:bg-gray-700 transition" 
+              (click)="loadArticles(page - 1)">
+              Précédent
+          </button>
+          <button 
               *ngIf="page < totalPages" 
-              class="px-4 py-2 bg-gray-800 text-white rounded-r" 
-              (click)="loadArticles(page + 1)">Suivant</button>
-          </div>
+              class="px-4 py-2 bg-gray-800 text-white rounded-r hover:bg-gray-700 transition" 
+              (click)="loadArticles(page + 1)">
+              Suivant
+          </button>
         </div>
       </div>
     </div>

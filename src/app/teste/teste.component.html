@@ -1,0 +1,50 @@
+<div class="p-4">
+    <input type="file" (change)="onFileChange($event)" accept=".xlsx" />
+  
+    <!-- <table *ngIf="excelData.length" border="1" class="mt-4 w-full border-collapse">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headers">{{ head }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of excelData">
+          <td *ngFor="let cell of row">
+            <img *ngIf="isImageBase64(cell)" [src]="cell" width="80" />
+            <span *ngIf="!isImageBase64(cell)">{{ cell }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table> -->
+
+    <!-- <tbody>
+        <tr *ngFor="let row of excelData">
+          <td *ngFor="let cell of row | keyvalue">
+            <img *ngIf="isImageBase64(cell.value)" [src]="cell.value" width="80" />
+            <span *ngIf="!isImageBase64(cell.value)">{{ cell.value }}</span>
+          </td>
+        </tr>
+      </tbody> -->
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th *ngFor="let header of headers">{{ header }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of excelData">
+            <td *ngFor="let cell of row">
+              <img *ngIf="isImageUrl(cell)" [src]="cell" width="80" />
+              <span *ngIf="!isImageUrl(cell)">{{ cell }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      
+      
+
+  </div>
+  

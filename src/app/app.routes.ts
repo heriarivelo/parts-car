@@ -20,6 +20,8 @@ import { FactureMDComponent } from './manageur/parts/Facture/Detaille/factureD.c
 import { CommandeMComponent } from './manageur/parts/Commande/commande.component';
 import { ArticlesComponent } from './admin/parts/articles/articles.component';
 import { StocksMComponent } from './manageur/parts/stocks/stocks.component';
+// import { TesteComponent } from './teste/teste.component';
+import { TestComponent } from './admin/parts/test/test.component';
 
 export const routes: Routes = [
   { path: '',redirectTo: '/login', pathMatch: 'full'  },
@@ -44,6 +46,7 @@ export const routes: Routes = [
   { path: 'manager/commande/new', component: NewMComponent },
   { path: 'manager/facture', component: FactureMComponent },
   { path: 'manager/facture/D', component: FactureMDComponent },
-  { path: 'manager/stock' , component: StocksMComponent }
+  { path: 'manager/stock' , component: StocksMComponent },
+  { path: 'teste' , component: TestComponent },
       
 ];

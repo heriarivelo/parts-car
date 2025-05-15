@@ -13,6 +13,7 @@
           <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Réf. Facture</th>
           <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Prix Total</th>
           <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Statut</th>
+          <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -22,12 +23,16 @@
           <td class="px-4 py-2 text-sm text-gray-700">{{ facture.reference_fact }}</td>
           <td class="px-4 py-2 text-sm text-gray-700">{{ facture.prix_total | currency }}</td>
           <td class="px-4 py-2 text-sm">
-            <span [ngClass]="{
+            <!-- <span [ngClass]="{
               'text-green-600 font-semibold': facture.status === 1,
               'text-yellow-600 font-semibold': facture.status === 0
             }">
               {{ facture.status === 1 ? 'Payée' : 'En attente' }}
-            </span>
+            </span> -->
+            {{ facture.status }}
+          </td>
+          <td class="px-6 py-4 text-sm font-medium space-x-2">
+            <button (click)="openDetailModal(facture.reference_fact)" class="text-green-600 hover:text-green-800">Payer</button>
           </td>
         </tr>
       </tbody>
